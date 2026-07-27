@@ -68,14 +68,14 @@ function CustomSelect({
       </button>
 
       {open && (
-        <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/[0.15] bg-[#0f1040] shadow-2xl shadow-black/60 overflow-hidden">
+        <div className="absolute z-50 mt-2 w-full rounded-xl border border-white/[0.15] bg-[#14163f] shadow-2xl shadow-black/60 overflow-hidden">
           {options.map((opt) => (
             <button
               key={opt.id}
               type="button"
               onClick={() => { onChange(opt.id); setOpen(false); }}
               className={`w-full text-left px-4 py-3 text-sm transition-colors duration-100 flex flex-col gap-0.5
-                ${value === opt.id ? "bg-white/20 text-white font-medium" : "text-white/80 hover:bg-white/10 hover:text-white"}`}
+                ${value === opt.id ? "bg-[#262a6e] text-white font-medium" : "text-white/80 hover:bg-[#1d1f57] hover:text-white"}`}
             >
               <span>{opt.label}</span>
               <span className="text-[11px] text-white/40">{opt.dept}</span>
@@ -91,7 +91,7 @@ function ApplyForm() {
   const [searchParams] = useSearchParams();
   const preselect = searchParams.get("role") ?? "";
 
-  type FTFields = { name: string; email: string; linkedin: string; github: string; portfolio: string; experience: string; location: string; message: string };
+  type FTFields = { name: string; email: string; linkedin: string; github: string; experience: string; message: string };
   type FTErrors = Partial<Record<keyof FTFields | "role", string>>;
 
   const validateFT = (f: FTFields, r: string): FTErrors => {
@@ -102,13 +102,10 @@ function ApplyForm() {
     if (!f.email.trim()) e.email = "Email address is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = "Enter a valid email address.";
     if (!f.experience.trim()) e.experience = "Years of experience is required.";
-    if (!f.location.trim()) e.location = "Location is required.";
     if (!f.linkedin.trim()) e.linkedin = "LinkedIn username is required.";
     if (!f.github.trim()) e.github = "GitHub username is required.";
     else if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(f.github.trim()))
       e.github = "Enter a valid GitHub username.";
-    if (f.portfolio.trim() && !/^https?:\/\/.+\..+/.test(f.portfolio.trim()))
-      e.portfolio = "Enter a valid URL starting with http:// or https://";
     if (!f.message.trim()) e.message = "Cover letter / message is required.";
     else if (f.message.trim().length < 50) e.message = "Please write at least 50 characters.";
     return e;
@@ -118,7 +115,7 @@ function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
   const [openPanel, setOpenPanel] = useState<"how" | "tips" | null>(null);
   const toggle = (panel: "how" | "tips") => setOpenPanel((p) => (p === panel ? null : panel));
-  const [form, setForm] = useState<FTFields>({ name: "", email: "", linkedin: "", github: "", portfolio: "", experience: "", location: "", message: "" });
+  const [form, setForm] = useState<FTFields>({ name: "", email: "", linkedin: "", github: "", experience: "", message: "" });
   const [errors, setErrors] = useState<FTErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FTFields | "role", boolean>>>({});
 
@@ -146,7 +143,7 @@ function ApplyForm() {
     e.preventDefault();
     const errs = validateFT(form, role);
     setErrors(errs);
-    setTouched({ name: true, email: true, linkedin: true, github: true, portfolio: true, experience: true, location: true, message: true, role: true });
+    setTouched({ name: true, email: true, linkedin: true, github: true, experience: true, message: true, role: true });
     if (Object.keys(errs).length > 0) return;
 
     setSubmitted(true);
@@ -174,8 +171,6 @@ function ApplyForm() {
         style={{ background: "radial-gradient(at left top, rgba(255,255,255,0.06) 0%, rgb(14,20,100) 55%)" }}
       >
         <div className="px-4 sm:px-6 md:px-18">
-
-         
           {/* Main card */}
           <div
             className="rounded-3xl border border-white/15 backdrop-blur-2xl p-8 sm:p-12"
@@ -223,7 +218,7 @@ function ApplyForm() {
                           </span>
                           <div>
                             <p className="text-white font-semibold text-sm mb-0.5">{step.title}</p>
-                            <p className="text-white/55 text-xs leading-relaxed">{step.desc}</p>
+                            <p className="text-white/60 text-xs leading-relaxed">{step.desc}</p>
                           </div>
                         </div>
                       ))}
@@ -253,8 +248,8 @@ function ApplyForm() {
                     <div className="px-5 pb-5 flex flex-col gap-2.5 border-t border-white/10 pt-4">
                       {TIPS.map((tip) => (
                         <div key={tip} className="flex items-start gap-2.5">
-                          <span className="mt-1.5 w-1 h-1 rounded-full bg-white/40 flex-shrink-0" />
-                          <p className="text-white/55 text-xs leading-relaxed">{tip}</p>
+                          <span className="mt-1.5 w-1 h-1 rounded-full bg-white/55 flex-shrink-0" />
+                          <p className="text-white text-xs leading-relaxed">{tip}</p>
                         </div>
                       ))}
                     </div>
@@ -280,11 +275,18 @@ function ApplyForm() {
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-                    {/* Role */}
-                    <div>
-                      <label className={labelClass}>Role <span className="text-red-300">*</span></label>
-                      <CustomSelect value={role} onChange={handleRoleChange} placeholder="Select a role…" options={ROLES} />
-                      {errors.role && touched.role && <p className={errClass}><span>⚠</span>{errors.role}</p>}
+                    {/* Role & Experience */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className={labelClass}>Role <span className="text-red-300">*</span></label>
+                        <CustomSelect value={role} onChange={handleRoleChange} placeholder="Select a role…" options={ROLES} />
+                        {errors.role && touched.role && <p className={errClass}><span>⚠</span>{errors.role}</p>}
+                      </div>
+                      <div>
+                        <label className={labelClass}>Years of Experience <span className="text-red-300">*</span></label>
+                        <input name="experience" value={form.experience} onChange={handleChange} onBlur={() => handleBlur("experience")} placeholder="e.g. 3 years" className={inputClass("experience")} />
+                        {errors.experience && touched.experience && <p className={errClass}><span>⚠</span>{errors.experience}</p>}
+                      </div>
                     </div>
 
                     {/* Name & Email */}
@@ -298,20 +300,6 @@ function ApplyForm() {
                         <label className={labelClass}>Email Address <span className="text-red-300">*</span></label>
                         <input type="email" name="email" value={form.email} onChange={handleChange} onBlur={() => handleBlur("email")} placeholder="you@email.com" className={inputClass("email")} />
                         {errors.email && touched.email && <p className={errClass}><span>⚠</span>{errors.email}</p>}
-                      </div>
-                    </div>
-
-                    {/* Experience & Location */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className={labelClass}>Years of Experience <span className="text-red-300">*</span></label>
-                        <input name="experience" value={form.experience} onChange={handleChange} onBlur={() => handleBlur("experience")} placeholder="e.g. 3 years" className={inputClass("experience")} />
-                        {errors.experience && touched.experience && <p className={errClass}><span>⚠</span>{errors.experience}</p>}
-                      </div>
-                      <div>
-                        <label className={labelClass}>Location <span className="text-red-300">*</span></label>
-                        <input name="location" value={form.location} onChange={handleChange} onBlur={() => handleBlur("location")} placeholder="Manila, Philippines" className={inputClass("location")} />
-                        {errors.location && touched.location && <p className={errClass}><span>⚠</span>{errors.location}</p>}
                       </div>
                     </div>
 
@@ -335,13 +323,6 @@ function ApplyForm() {
                       {errors.github && touched.github && <p className={errClass}><span>⚠</span>{errors.github}</p>}
                     </div>
 
-                    {/* Portfolio */}
-                    <div>
-                      <label className={labelClass}>Portfolio / Website <span className="text-white/60 text-xs font-normal">(optional)</span></label>
-                      <input name="portfolio" value={form.portfolio} onChange={handleChange} onBlur={() => handleBlur("portfolio")} placeholder="https://yoursite.com" className={inputClass("portfolio")} />
-                      {errors.portfolio && touched.portfolio && <p className={errClass}><span>⚠</span>{errors.portfolio}</p>}
-                    </div>
-
                     {/* Message */}
                     <div>
                       <label className={labelClass}>Cover Letter / Message <span className="text-red-300">*</span></label>
@@ -361,7 +342,7 @@ function ApplyForm() {
                     <div className="flex items-center justify-end gap-4 pt-1">
                       <button
                         type="submit"
-                        className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200"
+                        className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 cursor-pointer"
                       >
                         Submit Application
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
