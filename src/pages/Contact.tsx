@@ -1,21 +1,7 @@
-import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
-
-const SERVICES = [
-  "Software & Application Development",
-  "Cloud Platforms & Data Management",
-  "IoT & Embedded Systems",
-  "AI, ML & Biometric Systems",
-  "IT Consulting & System Integration",
-  "Digital Platforms & Marketplaces",
-  "Hilabi — Vehicle QR Tag System",
-  "Assessment & Evaluation System",
-  "Scholar Management System",
-  "Other (please specify in message)",
-];
 
 const CONTACT_ITEMS = [
   {
@@ -25,7 +11,7 @@ const CONTACT_ITEMS = [
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
-        className="w-5 h-5"
+        className="w-6 h-6"
       >
         <path
           strokeLinecap="round"
@@ -37,8 +23,10 @@ const CONTACT_ITEMS = [
     label: "Mail us",
     value: "contact@elyonware.com",
     href: "mailto:contact@elyonware.com",
+    accent: "text-blue-400",
+    iconBg: "bg-blue-500/15 group-hover:bg-blue-500/25",
+    hoverText: "group-hover:text-blue-400",
   },
- 
   {
     icon: (
       <svg
@@ -46,7 +34,7 @@ const CONTACT_ITEMS = [
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
-        className="w-5 h-5"
+        className="w-6 h-6"
       >
         <path
           strokeLinecap="round"
@@ -58,65 +46,32 @@ const CONTACT_ITEMS = [
     label: "Call us",
     value: "+91 87300 32780",
     href: "tel:+918730032780",
+    accent: "text-emerald-400",
+    iconBg: "bg-emerald-500/15 group-hover:bg-emerald-500/25",
+    hoverText: "group-hover:text-emerald-400",
   },
   {
     icon: (
-      <svg viewBox="0 0 32 32" fill="currentColor" className="w-5 h-5">
+      <svg viewBox="0 0 32 32" fill="currentColor" className="w-6 h-6">
         <path d="M16 0C7.163 0 0 7.163 0 16c0 2.833.738 5.49 2.031 7.8L0 32l8.418-2.004A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.078 22.616c-.337.947-1.97 1.809-2.695 1.927-.69.112-1.56.159-2.514-.158-.58-.19-1.324-.444-2.276-.87-4.002-1.73-6.614-5.76-6.814-6.026-.198-.265-1.618-2.153-1.618-4.108s1.023-2.91 1.386-3.309c.362-.398.792-.497 1.056-.497.264 0 .528.002.759.014.243.013.569-.092.891.68.336.8 1.141 2.755 1.24 2.955.099.199.166.431.033.694-.133.264-.199.43-.397.661-.198.232-.417.518-.595.695-.198.199-.404.414-.174.812.23.397 1.022 1.687 2.195 2.733 1.508 1.343 2.78 1.758 3.177 1.957.397.198.628.166.86-.1.23-.265.99-1.155 1.254-1.552.264-.397.528-.331.891-.199.364.133 2.31 1.09 2.707 1.288.397.199.661.298.76.464.099.166.099.962-.238 1.91z" />
       </svg>
     ),
     label: "WhatsApp",
     value: "+91 87300 32780",
     href: "https://wa.me/918730032780",
-  },
-  {
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        className="w-5 h-5"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253M3 12a8.959 8.959 0 00.284 2.253"
-        />
-      </svg>
-    ),
-    label: "Website",
-    value: "www.elyonware.com",
-    href: "/",
+    accent: "text-[#25D366]",
+    iconBg: "bg-[#25D366]/15 group-hover:bg-[#25D366]/25",
+    hoverText: "group-hover:text-[#25D366]",
   },
 ];
 
-type FormState = "idle" | "sent";
+const QUICK_LINKS = [
+  { label: "Our services", href: "/#services" },
+  { label: "Our products", href: "/#products" },
+  { label: "About us", href: "/about" },
+];
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<FormState>("idle");
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sent");
-  };
-
-  const inputClass =
-    "w-full px-4 py-3 rounded-xl bg-white border border-white/25 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#00d4ff]/70 transition-all duration-200 text-sm";
-
   return (
     <>
       <SEO
@@ -148,247 +103,67 @@ export default function ContactPage() {
           </p>
         </section>
 
-        {/* ── Main grid ── */}
-        <section className="py-12 px-4 sm:px-6 pb-28">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10">
-            {/* ── Contact form ── */}
-            <div>
-              <div
-                className="p-6 sm:p-8 rounded-3xl border border-white/20 backdrop-blur-xl"
+        {/* ── Contact channels ── */}
+        <section className="py-8 px-4 sm:px-6 pb-24">
+          <div className="max-w-5xl mx-auto">
+           
+
+            <div className="relative">
+              <img
+                src="/robot3-lay-on-belly.png"
+                alt=""
                 style={{
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.13) 0%, rgba(88,101,242,0.22) 40%, rgba(168,85,247,0.18) 75%, rgba(0,212,255,0.12) 100%)",
-                  boxShadow:
-                    "0 0 60px rgba(88,101,242,0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+                  width: 170,
+                  height: "auto",
+                  animation: "float-subtle 8s ease-in-out infinite",
+                  filter: "drop-shadow(0 0 20px rgba(0,212,255,0.2))",
+                  position: "absolute",
+                  top: -84,
+                  right: 8,
+                  zIndex: 10,
                 }}
-              >
-                {status === "sent" ? (
-                  <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                        className="w-8 h-8"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+              />
+              <div className="grid sm:grid-cols-3 gap-4">
+                {CONTACT_ITEMS.map((c) => (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    className="group flex items-center gap-4 p-6 rounded-2xl border border-white/[0.1] bg-[#12142e] hover:bg-[#181b3a] transition-colors"
+                  >
+                    <div className={`flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl transition-colors ${c.iconBg} ${c.accent}`}>
+                      {c.icon}
                     </div>
-                    <h3 className="text-2xl font-bold text-white">
-                      Message sent!
-                    </h3>
-                    <p className="text-white max-w-sm">
-                      Thanks for reaching out. We'll get back to you within 1–2
-                      business days.
-                    </p>
-                    <button
-                      onClick={() => {
-                        setStatus("idle");
-                        setForm({
-                          name: "",
-                          email: "",
-                          company: "",
-                          service: "",
-                          message: "",
-                        });
-                      }}
-                      className="mt-4 px-6 py-2.5 rounded-[30px] border border-white/20 text-white text-sm font-semibold hover:bg-white/[0.08] transition-colors"
-                    >
-                      Send another
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <h2 className="text-xl font-bold text-white mb-6">
-                      Send us a message
-                    </h2>
-
-                    {/* Name + Email */}
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-white mb-1.5">
-                          Full name *
-                        </label>
-                        <input
-                          name="name"
-                          value={form.name}
-                          onChange={handleChange}
-                          required
-                          placeholder="Jane Smith"
-                          className={inputClass}
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-semibold text-white mb-1.5">
-                          Email address *
-                        </label>
-                        <input
-                          name="email"
-                          type="email"
-                          value={form.email}
-                          onChange={handleChange}
-                          required
-                          placeholder="jane@company.com"
-                          className={inputClass}
-                        />
+                    <div>
+                      <div className="text-xs text-white/60 mb-0.5">{c.label}</div>
+                      <div className={`text-base font-semibold text-white transition-colors ${c.hoverText}`}>
+                        {c.value}
                       </div>
                     </div>
-
-                    {/* Company */}
-                    <div>
-                      <label className="block text-xs font-semibold text-white mb-1.5">
-                        Company / Organisation
-                      </label>
-                      <input
-                        name="company"
-                        value={form.company}
-                        onChange={handleChange}
-                        placeholder="Acme Corp (optional)"
-                        className={inputClass}
-                      />
-                    </div>
-
-                    {/* Service */}
-                    <div>
-                      <label className="block text-xs font-semibold text-white mb-1.5">
-                        What are you interested in? *
-                      </label>
-                      <select
-                        name="service"
-                        value={form.service}
-                        onChange={handleChange}
-                        required
-                        className={`${inputClass} appearance-none cursor-pointer`}
-                      >
-                        <option
-                          value=""
-                          disabled
-                          className="bg-white text-gray-400"
-                        >
-                          Select a service or product…
-                        </option>
-                        {SERVICES.map((s) => (
-                          <option
-                            key={s}
-                            value={s}
-                            className="bg-white text-gray-900"
-                          >
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label className="block text-xs font-semibold text-white mb-1.5">
-                        Message *
-                      </label>
-                      <textarea
-                        name="message"
-                        value={form.message}
-                        onChange={handleChange}
-                        required
-                        rows={5}
-                        placeholder="Tell us about your project, timeline or any questions you have…"
-                        className={`${inputClass} resize-none`}
-                      />
-                    </div>
-
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-[30px] transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 flex items-center justify-center gap-2"
-                    >
-                      Send message →
-                    </button>
-
-                    <p className="text-xs text-white text-center">
-                      We'll respond within 1–2 business days.
-                    </p>
-                  </form>
-                )}
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* ── Contact info ── */}
-            <div className="flex flex-col gap-5">
-              {/* Contact channels with robot floating over the card */}
-              <div className="relative">
-                <img
-                  src="/robot3-lay-on-belly.png"
-                  alt=""
-                  style={{
-                    width: 200,
-                    height: "auto",
-                    animation: "float-subtle 8s ease-in-out infinite",
-                    filter: "drop-shadow(0 0 20px rgba(0,212,255,0.2))",
-                    position: "absolute",
-                    top: -90,
-                    right: 16,
-                    zIndex: 10,
-                  }}
-                />
-                <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
-                  <h3 className="font-bold text-white mb-5">
-                    Other ways to reach us
-                  </h3>
-                  <div className="flex flex-col gap-4">
-                    {CONTACT_ITEMS.map((c) => (
-                      <a
-                        key={c.label}
-                        href={c.href}
-                        className="flex items-start gap-3 group"
-                      >
-                        <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg bg-indigo-500/15 text-indigo-400 group-hover:bg-indigo-500/25 transition-colors">
-                          {c.icon}
-                        </div>
-                        <div>
-                          <div className="text-xs text-white mb-0.5">
-                            {c.label}
-                          </div>
-                          <div className="text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors">
-                            {c.value}
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
+            <div className="grid sm:grid-cols-2 gap-4 mt-10">
               {/* Response time */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20 backdrop-blur-md">
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
                 <h3 className="font-bold text-white mb-3">Response time</h3>
                 <p className="text-sm text-white leading-relaxed mb-4">
                   We aim to respond to every enquiry within{" "}
-                  <span className="text-indigo-300 font-semibold">
-                    24–48 hours
-                  </span>{" "}
+                  <span className="text-indigo-300 font-semibold">24–48 hours</span>{" "}
                   on business days.
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-sm text-white">
-                    Currently accepting new projects
-                  </span>
+                  <span className="text-sm text-white">Currently accepting new projects</span>
                 </div>
               </div>
 
               {/* Quick links */}
-              <div className="p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
+              <div className="p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
                 <h3 className="font-bold text-white mb-4">Explore first</h3>
                 <div className="flex flex-col gap-2">
-                  {[
-                    { label: "Our services", href: "/#services" },
-                    { label: "Our products", href: "/#products" },
-                    { label: "About us", href: "/about" },
-                  ].map((l) => (
+                  {QUICK_LINKS.map((l) => (
                     <Link
                       key={l.label}
                       to={l.href}
@@ -415,7 +190,7 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-       
+
         <Footer />
       </main>
     </>
