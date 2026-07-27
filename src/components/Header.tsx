@@ -8,7 +8,7 @@ const PRODUCTS = [
     name: "Hilabi",
     tagline: "Smart Vehicle QR Tag System",
     desc: "Register your vehicle and emergency contacts. Anyone who scans your QR tag can instantly call or message you — whether it's a parking issue or a roadside emergency.",
-    color: "from-orange-500/20 to-yellow-500/10",
+    color: "bg-[#241505]",
     border: "border-orange-400/30",
     accent: "text-amber-400",
     iconBg: "bg-orange-500/15",
@@ -27,7 +27,7 @@ const PRODUCTS = [
     name: "Assessment & Evaluation System",
     tagline: "End-to-End Academic Assessment Platform",
     desc: "Assign subjects and faculty, conduct assessments, and generate official results and transcripts — all within a fully customisable grading and academic calendar framework.",
-    color: "from-indigo-500/20 to-blue-600/10",
+    color: "bg-[#161536]",
     border: "border-indigo-500/20",
     accent: "text-indigo-400",
     iconBg: "bg-indigo-500/15",
@@ -45,7 +45,7 @@ const PRODUCTS = [
     name: "Scholar Management System",
     tagline: "Integrated Scholarship & Learning Platform",
     desc: "Track scholar progress on a visual timeline, manage academic calendars, and deliver learning content through a built-in LMS.",
-    color: "from-emerald-500/20 to-teal-600/10",
+    color: "bg-[#0c2620]",
     border: "border-emerald-500/20",
     accent: "text-emerald-400",
     iconBg: "bg-emerald-500/15",
@@ -370,7 +370,7 @@ export default function Header() {
                     {PRODUCTS.map((p) => (
                       <div
                         key={p.id}
-                        className={`group flex flex-col gap-4 p-5 rounded-2xl border ${p.border} bg-gradient-to-br ${p.color} transition-all duration-200`}
+                        className={`group flex flex-col gap-4 p-5 rounded-2xl border ${p.border} ${p.color} transition-all duration-200`}
                       >
                         <div className="flex items-start gap-3">
                           <div className={`flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg ${p.iconBg} ${p.accent}`}>{p.icon}</div>
@@ -435,7 +435,7 @@ export default function Header() {
                   <div className="w-full py-4 grid grid-cols-3 gap-5">
                     {SERVICES.map((s) => (
                       <Link key={s.id} to="#services"
-                            className="group flex items-start gap-4 p-6 rounded-2xl border border-white/[0.06] hover:border-white/[0.14] hover:bg-white/[0.05] transition-all duration-200">
+                            className="group flex items-start gap-4 p-6 rounded-2xl border border-white/[0.08] bg-[#1a1b1f] hover:border-white/[0.18] hover:bg-[#212227] transition-all duration-200">
                         <div className={`flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-xl ${s.iconBg} ${s.accent} mt-0.5`}>{s.icon}</div>
                         <div>
                           <p className={`text-sm font-semibold text-white group-hover:${s.accent} transition-colors leading-snug mb-1.5`}>{s.name}</p>
@@ -468,7 +468,7 @@ export default function Header() {
               {mobileExpanded === "products" && (
                 <div className="mt-1 mb-2 flex flex-col gap-2 pl-2">
                   {PRODUCTS.map((p) => (
-                    <div key={p.id} className={`flex flex-col gap-3 p-3 rounded-2xl border ${p.border} bg-gradient-to-br ${p.color}`}>
+                    <div key={p.id} className={`flex flex-col gap-3 p-3 rounded-2xl border ${p.border} ${p.color}`}>
                       <div className="flex items-start gap-3">
                         <div className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg ${p.iconBg} ${p.accent}`}>{p.icon}</div>
                         <div>
@@ -514,7 +514,7 @@ export default function Header() {
                 <div className="mt-1 mb-2 flex flex-col gap-1.5 pl-2">
                   {SERVICES.map((s) => (
                     <Link key={s.id} to="#services" onClick={closeMobile}
-                          className="flex items-center gap-3 p-3 rounded-xl border border-white/[0.07] hover:bg-white/[0.05] transition-colors">
+                          className="flex items-center gap-3 p-3 rounded-xl border border-white/[0.08] bg-[#1a1b1f] hover:bg-[#212227] transition-colors">
                       <div className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg ${s.iconBg} ${s.accent}`}>{s.icon}</div>
                       <span className="text-sm font-medium text-white">{s.name}</span>
                     </Link>
