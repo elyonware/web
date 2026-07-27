@@ -53,24 +53,6 @@ const SERVICES = [
 
 /* ────────────────────────── page ────────────────────────── */
 
-const STARS = [
-  { left: "8%", top: "12%", size: 5, delay: "0s", duration: "3.8s" },
-  { left: "18%", top: "34%", size: 7, delay: "1.1s", duration: "4.6s" },
-  { left: "27%", top: "16%", size: 5, delay: "2.4s", duration: "3.4s" },
-  { left: "39%", top: "43%", size: 6, delay: "0.7s", duration: "5s" },
-  { left: "47%", top: "9%", size: 8, delay: "1.8s", duration: "4.1s" },
-  { left: "59%", top: "28%", size: 5, delay: "0.3s", duration: "3.2s" },
-  { left: "67%", top: "14%", size: 10, delay: "2s", duration: "4.8s" },
-  { left: "78%", top: "39%", size: 6, delay: "1.4s", duration: "3.6s" },
-  { left: "88%", top: "18%", size: 8, delay: "0.9s", duration: "4.3s" },
-  { left: "93%", top: "55%", size: 5, delay: "2.7s", duration: "5.2s" },
-  { left: "13%", top: "68%", size: 5, delay: "1.9s", duration: "4s" },
-  { left: "31%", top: "73%", size: 7, delay: "0.4s", duration: "4.7s" },
-  { left: "52%", top: "64%", size: 5, delay: "2.2s", duration: "3.9s" },
-  { left: "71%", top: "79%", size: 8, delay: "1.2s", duration: "4.5s" },
-  { left: "84%", top: "70%", size: 6, delay: "0.1s", duration: "3.5s" },
-];
-
 export default function Home() {
   return (
     <>
@@ -79,112 +61,86 @@ export default function Home() {
         description="Elyonware designs and builds software, AI, IoT and cloud solutions for businesses creating modern digital products."
         path="/"
       />
-      <main
-        className="relative min-h-screen overflow-hidden bg-cover bg-top bg-scroll bg-no-repeat"
-        style={{ backgroundImage: "url('/wallpaper-1.png')" }}
-      >
-        <div
-          className="space-scene pointer-events-none absolute inset-0 z-0"
-          aria-hidden="true"
-        >
-          {STARS.map((star) => (
-            <span
-              key={`${star.left}-${star.top}`}
-              className="space-star"
-              style={{
-                left: star.left,
-                top: star.top,
-                width: star.size,
-                height: star.size,
-                animationDelay: star.delay,
-                animationDuration: star.duration,
-              }}
-            />
-          ))}
-          <span className="shooting-star shooting-star-one" />
-          <span className="shooting-star shooting-star-two" />
-          <span className="shooting-star shooting-star-three" />
-        </div>
-        <div className="relative z-10">
-          <Header />
-          <Hero />
+      <main className="relative min-h-screen overflow-hidden bg-[#04060f]">
+        <Header />
+        <Hero />
 
-          {/* ── Services marquee strip ── */}
-          <div className="relative overflow-hidden border-y border-[#00d4ff]/10 bg-black/50 backdrop-blur-sm py-6">
-            {/* Fade edges */}
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-black/60 to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-black/60 to-transparent" />
+        {/* ── Services marquee strip ── */}
+        <div className="relative z-10 overflow-hidden border-y border-[#00d4ff]/10 bg-black/50 backdrop-blur-sm py-6">
+          {/* Fade edges */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-black/60 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-black/60 to-transparent" />
 
-            <div className="marquee-track flex items-center gap-0 whitespace-nowrap w-max">
-              {/* Duplicate for seamless loop */}
-              {[...Array(2)].map((_, set) => (
-                <span key={set} className="flex items-center">
-                  {[
-                    "Software & Application Development",
-                    "Cloud Platforms & Data Management",
-                    "IoT & Embedded Systems",
-                    "AI, Machine Learning & Biometrics",
-                    "IT Consulting & System Integration",
-                    "Digital Platforms & Marketplaces",
-                  ].map((service) => (
-                    <span
-                      key={service}
-                      className="flex items-center gap-6 px-6"
-                    >
-                      <span className="text-xl font-bold uppercase tracking-widest text-white">
-                        {service}
-                      </span>
-                      <img
-                        src="/logo-white.png"
-                        alt=""
-                        className="h-8 w-auto opacity-90 flex-shrink-0"
-                      />
-                    </span>
-                  ))}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* ── Services ── */}
-          <section
-            id="services"
-            className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 bg-[#0d1240]"
-          >
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-20">
-                <span className="inline-flex items-center gap-2 px-3 py-1 border border-[#00d4ff]/40 bg-[#00d4ff]/5 text-[#00d4ff] text-xs font-bold uppercase tracking-[0.2em] mb-5">
+          <div className="marquee-track flex items-center gap-0 whitespace-nowrap w-max">
+            {/* Duplicate for seamless loop */}
+            {[...Array(2)].map((_, set) => (
+              <span key={set} className="flex items-center">
+                {[
+                  "Software & Application Development",
+                  "Cloud Platforms & Data Management",
+                  "IoT & Embedded Systems",
+                  "AI, Machine Learning & Biometrics",
+                  "IT Consulting & System Integration",
+                  "Digital Platforms & Marketplaces",
+                ].map((service) => (
                   <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"
-                    style={{
-                      animation: "antenna-glow 1.5s ease-in-out infinite",
-                    }}
-                  />
-                  Capabilities
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-                  End-to-end technology solutions
-                  <br />
-                  <span className="bg-gradient-to-r from-[#00d4ff] via-[#5865f2] to-[#a855f7] bg-clip-text text-transparent">
-                    for the digital era.
-                  </span>
-                </h2>
-                <p className="text-white text-lg max-w-2xl mx-auto">
-                  From embedded hardware to enterprise AI — we design, build and
-                  operate the full stack of modern technology.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-5">
-                {SERVICES.map((s, i) => (
-                  <div
-                    key={s.title}
-                    className="group relative overflow-hidden rounded-3xl border border-white/[0.08] hover:border-white/[0.18] transition-all duration-300"
-                    style={{
-                      background: "#0d1240",
-                      boxShadow: `0 4px 40px ${s.accent}22`,
-                    }}
+                    key={service}
+                    className="flex items-center gap-6 px-6"
                   >
+                    <span className="text-xl font-bold uppercase tracking-widest text-white">
+                      {service}
+                    </span>
+                    <img
+                      src="/logo-white.png"
+                      alt=""
+                      className="h-8 w-auto opacity-90 flex-shrink-0"
+                    />
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Services ── */}
+        <section
+          id="services"
+          className="relative z-10 py-16 sm:py-24 lg:py-32 px-4 sm:px-6 "
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <span className="inline-flex items-center gap-2 px-3 py-1 border border-[#00d4ff]/40 bg-[#00d4ff]/5 text-[#00d4ff] text-xs font-bold uppercase tracking-[0.2em] mb-5">
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"
+                  style={{
+                    animation: "antenna-glow 1.5s ease-in-out infinite",
+                  }}
+                />
+                Capabilities
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+                End-to-end technology solutions
+                <br />
+                <span className="bg-gradient-to-r from-[#00d4ff] via-[#5865f2] to-[#a855f7] bg-clip-text text-transparent">
+                  for the digital era.
+                </span>
+              </h2>
+              <p className="text-white text-lg max-w-2xl mx-auto">
+                From embedded hardware to enterprise AI — we design, build and
+                operate the full stack of modern technology.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-5">
+              {SERVICES.map((s, i) => (
+                <div
+                  key={s.title}
+                  className="group relative z-10 overflow-hidden rounded-3xl border border-white/[0.08] hover:border-white/[0.18] backdrop-blur-md transition-all duration-300"
+                  style={{
+                    background: "rgba(13,18,64,0.55)",
+                    boxShadow: `0 4px 40px ${s.accent}22`,
+                  }}
+                >
                     {/* Image — absolutely positioned, never drives card height */}
                     <div
                       className={`hidden lg:block absolute inset-y-0 ${i % 2 === 1 ? "left-0" : "right-0"} w-[45%] overflow-hidden`}
@@ -196,11 +152,20 @@ export default function Home() {
                       />
                       <div
                         className="absolute inset-0"
-                        style={{ background: i % 2 === 1 ? "linear-gradient(to right, #0d1240, transparent 50%)" : "linear-gradient(to left, #0d1240, transparent 50%)" }}
+                        style={{
+                          background:
+                            i % 2 === 1
+                              ? "linear-gradient(to right, rgba(13,18,64,0.55), transparent 50%)"
+                              : "linear-gradient(to left, rgba(13,18,64,0.55), transparent 50%)",
+                        }}
                       />
                       <span
                         className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.18em] border backdrop-blur-sm"
-                        style={{ color: s.accent, borderColor: `${s.accent}50`, background: `${s.accent}18` }}
+                        style={{
+                          color: s.accent,
+                          borderColor: `${s.accent}50`,
+                          background: `${s.accent}18`,
+                        }}
                       >
                         {s.tag}
                       </span>
@@ -215,7 +180,11 @@ export default function Home() {
                       />
                       <span
                         className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.18em] border backdrop-blur-sm"
-                        style={{ color: s.accent, borderColor: `${s.accent}50`, background: `${s.accent}18` }}
+                        style={{
+                          color: s.accent,
+                          borderColor: `${s.accent}50`,
+                          background: `${s.accent}18`,
+                        }}
                       >
                         {s.tag}
                       </span>
@@ -229,7 +198,8 @@ export default function Home() {
                         className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
                         style={{ color: s.accent }}
                       >
-                        {String(i + 1).padStart(2, "0")} / {String(SERVICES.length).padStart(2, "0")}
+                        {String(i + 1).padStart(2, "0")} /{" "}
+                        {String(SERVICES.length).padStart(2, "0")}
                       </span>
                       <h3 className="font-black text-2xl md:text-3xl leading-tight text-white">
                         {s.title}
@@ -242,7 +212,9 @@ export default function Home() {
                     {/* accent glow line */}
                     <div
                       className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
-                      style={{ background: `linear-gradient(90deg, ${s.accent}cc, transparent)` }}
+                      style={{
+                        background: `linear-gradient(90deg, ${s.accent}cc, transparent)`,
+                      }}
                     />
                   </div>
                 ))}
@@ -250,15 +222,13 @@ export default function Home() {
             </div>
           </section>
 
-         
-
           {/* ── Contact / CTA ── */}
           <section
             id="contact"
             className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6"
           >
             <div className="max-w-5xl mx-auto">
-              <div className="relative overflow-hidden border border-[#00d4ff]/30 bg-black/60 backdrop-blur-sm p-12 md:p-20 text-center">
+              <div className="relative z-10 overflow-hidden border border-[#00d4ff]/30 bg-black/30 backdrop-blur-sm p-12 md:p-20 text-center">
                 {/* Corner accents */}
                 <span className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#00d4ff]/80 hud-corner" />
                 <span className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#00d4ff]/80 hud-corner" />
@@ -292,7 +262,7 @@ export default function Home() {
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                     <a
-                      href="mailto:hello@elyonware.com"
+                      href="mailto:contact@elyonware.com"
                       className="px-8 py-4 border border-white/20 hover:border-white/40
                                bg-white/5 hover:bg-white/10 text-white
                                font-semibold uppercase tracking-wider transition-all duration-200"
@@ -350,7 +320,6 @@ export default function Home() {
           </div>
 
           <Footer />
-        </div>
       </main>
     </>
   );

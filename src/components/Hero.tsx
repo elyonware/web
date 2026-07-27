@@ -8,12 +8,34 @@ const CHAR_MS = 52;
 const LINE_PAUSE = 380;
 const CONTENT_DELAY_MS = 2450;
 
+const INTRO_PLAYED_KEY = "heroIntroPlayed";
+
+function introAlreadyPlayed() {
+  try {
+    return sessionStorage.getItem(INTRO_PLAYED_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export default function Hero() {
-  const [typed1, setTyped1] = useState("");
-  const [typed2, setTyped2] = useState("");
-  const [phase, setPhase] = useState<0 | 1 | 2 | 3>(0);
+  const [skipIntro] = useState(introAlreadyPlayed);
+  const [typed1, setTyped1] = useState(skipIntro ? LINE1 : "");
+  const [typed2, setTyped2] = useState(skipIntro ? LINE2 : "");
+  const [phase, setPhase] = useState<0 | 1 | 2 | 3>(skipIntro ? 3 : 0);
 
   useEffect(() => {
+    if (phase === 3) {
+      try {
+        sessionStorage.setItem(INTRO_PLAYED_KEY, "1");
+      } catch {
+        // ignore storage errors (e.g. private mode)
+      }
+    }
+  }, [phase]);
+
+  useEffect(() => {
+    if (skipIntro) return;
     let t: ReturnType<typeof setTimeout>;
     if (phase === 0) {
       if (typed1.length < LINE1.length) {
@@ -41,7 +63,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative z-0 min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
+      className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
       style={{
         backgroundImage: "url('/hero-enterprise-bg.png')",
         backgroundPosition: "center right",
@@ -50,11 +72,12 @@ export default function Hero() {
       <HeroBg />
       <div className="absolute inset-0 bg-gradient-to-r from-[#03050d] via-[#03050d]/78 to-[#03050d]/10" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#03050d]/55" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#04060f] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-16 lg:pt-28 lg:pb-20 flex min-h-screen items-center">
         <div className="w-full max-w-2xl text-center lg:text-left flex flex-col gap-y-8">
           <h1
-            className="font-black tracking-tight leading-[1.04] animate-fade-in-up"
+            className={`font-black tracking-tight leading-[1.04] ${skipIntro ? "" : "animate-fade-in-up"}`}
             style={{
               fontSize: "clamp(2.45rem,6vw,4.8rem)",
               animationDelay: "0ms",
@@ -96,16 +119,16 @@ export default function Hero() {
           />
 
           <p
-            className="text-white text-[1.1rem] max-w-xl leading-relaxed animate-fade-in-up mx-auto lg:mx-0"
-            style={{ animationDelay: `${CONTENT_DELAY_MS}ms` }}
+            className={`text-white text-[1.1rem] max-w-xl leading-relaxed mx-auto lg:mx-0 ${skipIntro ? "" : "animate-fade-in-up"}`}
+            style={{ animationDelay: skipIntro ? undefined : `${CONTENT_DELAY_MS}ms` }}
           >
             We build secure AI, cloud, mobile, IoT, and enterprise software that
             helps businesses scale faster.
           </p>
 
           <div
-            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-in-up"
-            style={{ animationDelay: `${CONTENT_DELAY_MS + 160}ms` }}
+            className={`flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 ${skipIntro ? "" : "animate-fade-in-up"}`}
+            style={{ animationDelay: skipIntro ? undefined : `${CONTENT_DELAY_MS + 160}ms` }}
           >
             <Link
               to="/contact"
@@ -116,17 +139,10 @@ export default function Hero() {
                 WebkitBackdropFilter: "blur(24px) saturate(160%)",
               }}
             >
-              Start Your Project
-              <span className="ml-2 inline-block text-[#00d4ff] group-hover:translate-x-1 transition-transform duration-200">
-                -&gt;
-              </span>
+              Lear more
+              
             </Link>
-            <a
-              href="#services"
-              className="enterprise-secondary-cta px-8 py-4 border border-white/15 bg-white/[0.04] text-white/90 font-bold text-[0.92rem] uppercase tracking-[0.18em] transition-all duration-300"
-            >
-              View Our Work
-            </a>
+            
           </div>
         </div>
       </div>

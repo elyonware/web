@@ -107,7 +107,6 @@ const SERVICES = [
 ];
 
 type DropdownKey = "products" | "services" | null;
-type DemoProduct = "aes" | "sms" | null;
 
 const Chevron = ({ open }: { open: boolean }) => (
   <svg className={`w-3.5 h-3.5 transition-transform duration-200 flex-shrink-0 ${open ? "rotate-180" : ""}`}
@@ -115,134 +114,6 @@ const Chevron = ({ open }: { open: boolean }) => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
   </svg>
 );
-
-/* ── Demo Modal ─────────────────────────────────────────── */
-function DemoModal({ product, onClose }: { product: DemoProduct; onClose: () => void }) {
-  const p = PRODUCTS.find((x) => x.id === product);
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
-  const backdropRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
-  const handleSubmit = (e: React.BaseSyntheticEvent) => {
-    e.preventDefault();
-    setStatus("sent");
-  };
-
-  const inputClass = "w-full bg-white/[0.08] border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/35 transition-all duration-150";
-
-  return (
-    <div
-      ref={backdropRef}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(8px)" }}
-      onClick={(e) => { if (e.target === backdropRef.current) onClose(); }}
-    >
-      <div
-        className="relative w-full max-w-md rounded-3xl border border-white/15 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, rgba(15,15,40,0.95) 0%, rgba(49,52,160,0.85) 60%, rgba(88,40,140,0.80) 100%)" }}
-      >
-        {/* Header */}
-        <div className="flex items-start justify-between px-7 pt-7 pb-5 border-b border-white/10">
-          <div>
-            <p className="text-xs font-semibold tracking-widest uppercase text-indigo-400 mb-1">Book a Demo</p>
-            <h2 className="text-lg font-bold text-white leading-tight">{p?.name}</h2>
-            <p className="text-xs text-white/55 mt-0.5">{p?.tagline}</p>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all ml-4"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Body */}
-        <div className="px-7 py-6">
-          {status === "sent" ? (
-            <div className="text-center py-8">
-              <div className="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-              </div>
-              <h3 className="text-white font-bold text-lg mb-2">Request sent!</h3>
-              <p className="text-white/60 text-sm mb-6">We'll reach out within 1–2 business days to schedule your demo.</p>
-              <button onClick={onClose} className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-semibold transition-all">
-                Close
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-white/80 mb-1.5">Full Name <span className="text-red-400">*</span></label>
-                  <input
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-                    placeholder="Jane Smith"
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-white/80 mb-1.5">Email <span className="text-red-400">*</span></label>
-                  <input
-                    required
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-                    placeholder="jane@org.com"
-                    className={inputClass}
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-white/80 mb-1.5">Organisation <span className="text-white/40 font-normal">(optional)</span></label>
-                <input
-                  value={form.company}
-                  onChange={(e) => setForm((p) => ({ ...p, company: e.target.value }))}
-                  placeholder="Your school or company"
-                  className={inputClass}
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-white/80 mb-1.5">What do you want to see? <span className="text-red-400">*</span></label>
-                <textarea
-                  required
-                  rows={3}
-                  value={form.message}
-                  onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-                  placeholder="Tell us about your use case or any specific features you'd like to see…"
-                  className={inputClass + " resize-none"}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2"
-              >
-                Book my demo →
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ── Header ─────────────────────────────────────────────── */
 export default function Header() {
@@ -253,7 +124,6 @@ export default function Header() {
   const [visible, setVisible]     = useState(true);
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const [demoProduct, setDemoProduct]       = useState<DemoProduct>(null);
   const closeTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastScrollY = useRef(0);
 
@@ -276,22 +146,17 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!demoProduct) {
-      document.body.style.overflow = mobileOpen ? "hidden" : "";
-    }
-  }, [mobileOpen, demoProduct]);
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+  }, [mobileOpen]);
 
   const openFor       = (key: DropdownKey) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpen(key); };
   const scheduleClose = () => { closeTimer.current = setTimeout(() => setOpen(null), 130); };
   const closeMobile   = () => { setMobileOpen(false); setMobileExpanded(null); };
-  const openDemo      = (id: DemoProduct) => { setOpen(null); setMobileOpen(false); setDemoProduct(id); };
 
   const anyOpen = open !== null || mobileOpen;
 
   return (
     <>
-      {demoProduct && <DemoModal product={demoProduct} onClose={() => setDemoProduct(null)} />}
-
       {/* ── Top bar ── */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || anyOpen ? "bg-black/80 backdrop-blur-2xl border-b border-white/[0.07]" : "bg-transparent"
@@ -404,16 +269,16 @@ export default function Header() {
                               </svg>
                             </a>
                           ) : (
-                            <button
-                              type="button"
-                              onClick={() => openDemo(p.id as DemoProduct)}
+                            <Link
+                              to="/contact"
+                              onClick={() => setOpen(null)}
                               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-violet-600 hover:bg-violet-500 transition-all duration-150"
                             >
                               Book a demo
                               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                               </svg>
-                            </button>
+                            </Link>
                           )}
                         </div>
                       </div>
@@ -492,13 +357,13 @@ export default function Header() {
                           </svg>
                         </a>
                       ) : (
-                        <button
-                          type="button"
-                          onClick={() => openDemo(p.id as DemoProduct)}
+                        <Link
+                          to="/contact"
+                          onClick={closeMobile}
                           className="inline-flex items-center gap-1 px-4 py-2 rounded-full text-xs font-semibold text-white bg-violet-600 hover:bg-violet-500 transition-all self-start"
                         >
                           Book a demo →
-                        </button>
+                        </Link>
                       )}
                     </div>
                   ))}

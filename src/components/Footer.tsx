@@ -31,7 +31,7 @@ export default function Footer() {
   return (
     <>
       
-      <footer className="pt-16 pb-10 px-6 bg-[#02030a]/80 backdrop-blur-sm">
+      <footer className="relative z-10 pt-16 pb-10 px-6 bg-[#02030a]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-14">
             {/* Brand */}

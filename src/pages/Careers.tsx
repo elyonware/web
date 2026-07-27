@@ -20,7 +20,10 @@ const OPENINGS = [
       "Familiarity with computer vision and biometric systems",
       "Strong understanding of distributed training and GPU clusters",
     ],
-    nice: ["Experience with edge AI / embedded inference", "Contributions to open-source ML projects"],
+    nice: [
+      "Experience with edge AI / embedded inference",
+      "Contributions to open-source ML projects",
+    ],
   },
   {
     id: "ai-ml-engineer-mid",
@@ -38,7 +41,10 @@ const OPENINGS = [
       "Solid understanding of data pipelines and feature engineering",
       "Experience deploying models via REST APIs or gRPC",
     ],
-    nice: ["Exposure to biometric or facial recognition systems", "Familiarity with AWS SageMaker or GCP Vertex AI"],
+    nice: [
+      "Exposure to biometric or facial recognition systems",
+      "Familiarity with AWS SageMaker or GCP Vertex AI",
+    ],
   },
   {
     id: "fullstack-engineer",
@@ -56,7 +62,10 @@ const OPENINGS = [
       "Experience with PostgreSQL or MongoDB",
       "Comfortable with CI/CD pipelines and cloud deployments",
     ],
-    nice: ["Experience with React Native or Flutter", "Prior startup environment experience"],
+    nice: [
+      "Experience with React Native or Flutter",
+      "Prior startup environment experience",
+    ],
   },
   {
     id: "iot-engineer",
@@ -74,7 +83,10 @@ const OPENINGS = [
       "Experience with MQTT, BLE or LoRa communication protocols",
       "Ability to read schematics and collaborate with hardware teams",
     ],
-    nice: ["Experience with RTOS (FreeRTOS, Zephyr)", "Familiarity with AWS IoT Core or Azure IoT Hub"],
+    nice: [
+      "Experience with RTOS (FreeRTOS, Zephyr)",
+      "Familiarity with AWS IoT Core or Azure IoT Hub",
+    ],
   },
   {
     id: "intern-ai-ml",
@@ -92,7 +104,10 @@ const OPENINGS = [
       "Understanding of core ML concepts (regression, classification, neural networks)",
       "Enthusiasm to learn and take ownership of tasks",
     ],
-    nice: ["Personal projects or Kaggle competitions", "Experience with Jupyter notebooks and pandas"],
+    nice: [
+      "Personal projects or Kaggle competitions",
+      "Experience with Jupyter notebooks and pandas",
+    ],
   },
   {
     id: "intern-software",
@@ -110,7 +125,10 @@ const OPENINGS = [
       "Familiarity with any backend language (Python, Node.js, PHP)",
       "Eagerness to learn modern development practices",
     ],
-    nice: ["Any personal or university projects to showcase", "Exposure to React or Next.js"],
+    nice: [
+      "Any personal or university projects to showcase",
+      "Exposure to React or Next.js",
+    ],
   },
 ];
 
@@ -152,7 +170,6 @@ export default function CareersPage() {
       />
       <Header />
       <main className="min-h-screen bg-[#04060f] pt-24">
-
         {/* ── Hero ── */}
         <section className="px-4 sm:px-6 md:px-18 py-20 text-center flex flex-col items-center">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.05] max-w-3xl">
@@ -162,8 +179,9 @@ export default function CareersPage() {
             </span>
           </h1>
           <p className="text-white/90 text-lg max-w-xl leading-relaxed">
-            We&apos;re a full-spectrum technology company building AI, IoT, cloud and digital platforms.
-            Join a small, ambitious team shipping products that matter.
+            We&apos;re a full-spectrum technology company building AI, IoT,
+            cloud and digital platforms. Join a small, ambitious team shipping
+            products that matter.
           </p>
         </section>
 
@@ -172,7 +190,7 @@ export default function CareersPage() {
           {CULTURE_SECTIONS.map((s) => (
             <div
               key={s.title}
-              className={`flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-white/[0.02]`}
+              className={`relative z-10 flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-[#0d0f1a]`}
             >
               {/* Image */}
               <div className="relative lg:w-[52%] h-72 lg:h-auto flex-shrink-0">
@@ -187,7 +205,9 @@ export default function CareersPage() {
                 <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight uppercase">
                   {s.title}
                 </h2>
-                <p className="text-white/90 text-base leading-relaxed">{s.body}</p>
+                <p className="text-white/90 text-lg leading-relaxed">
+                  {s.body}
+                </p>
               </div>
             </div>
           ))}
@@ -196,8 +216,12 @@ export default function CareersPage() {
         {/* ── Full-time Openings ── */}
         <section className="px-4 sm:px-6 md:px-18 py-16">
           <div className="mb-10">
-            <p className="text-[#00d4ff] text-xs font-bold uppercase tracking-widest mb-2">Open Positions</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">Full-time Roles</h2>
+            <p className="text-[#00d4ff] text-xs font-bold uppercase tracking-widest mb-2">
+              Open Positions
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+              Full-time Roles
+            </h2>
           </div>
           <div className="flex flex-col gap-5">
             {fullTime.map((job) => (
@@ -209,9 +233,15 @@ export default function CareersPage() {
         {/* ── Internships ── */}
         <section className="px-4 sm:px-6 md:px-18 py-16">
           <div className="mb-10">
-            <p className="text-[#f472b6] text-xs font-bold uppercase tracking-widest mb-2">Students & Graduates</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">Internships</h2>
-            <p className="text-white mt-3 text-base">Open to students and recent graduates. Duration: 3–6 months.</p>
+            <p className="text-[#f472b6] text-xs font-bold uppercase tracking-widest mb-2">
+              Students & Graduates
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+              Internships
+            </h2>
+            <p className="text-white mt-3 text-base">
+              Open to students and recent graduates. Duration: 3–6 months.
+            </p>
           </div>
           <div className="flex flex-col gap-5">
             {internships.map((job) => (
@@ -220,10 +250,14 @@ export default function CareersPage() {
           </div>
 
           {/* Internship apply CTA */}
-          <div className="mt-8 p-7 rounded-3xl border border-[#f472b6]/25 bg-[#f472b6]/5 flex flex-col sm:flex-row items-center justify-between gap-5">
+          <div className="relative z-10 mt-8 p-7 rounded-3xl border border-[#f472b6]/25 bg-[#2b1220] flex flex-col sm:flex-row items-center justify-between gap-5">
             <div>
-              <p className="text-white font-bold text-lg">Interested in an internship?</p>
-              <p className="text-white mt-1 text-sm">Send your CV and let us know what you&apos;d like to work on.</p>
+              <p className="text-white font-bold text-xl">
+                Interested in an internship?
+              </p>
+              <p className="text-white mt-1 text-base">
+                Send your CV and let us know what you&apos;d like to work on.
+              </p>
             </div>
             <a
               href="mailto:contact@elyonware.com?subject=Internship Application"
@@ -231,8 +265,18 @@ export default function CareersPage() {
               style={{ background: "#f472b6", boxShadow: "0 0 24px #f472b640" }}
             >
               Apply here
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </a>
           </div>
@@ -240,53 +284,77 @@ export default function CareersPage() {
 
         {/* ── CTA ── */}
         <section className="px-4 sm:px-6 md:px-18 py-20">
-          <div className="p-10 rounded-3xl border border-white/[0.08] bg-white/[0.02] text-center max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-3">Don&apos;t see a fit?</h3>
-            <p className="text-white/90 mb-6 leading-relaxed">
-              We&apos;re always looking for exceptional people. Send us your CV and tell us what you&apos;d build here.
+          <div className="relative z-10 p-10 rounded-3xl border border-white/[0.08] bg-[#0d0f1a] text-center max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-3">
+              Don&apos;t see a fit?
+            </h3>
+            <p className="text-white/90 text-lg mb-6 leading-relaxed">
+              We&apos;re always looking for exceptional people. Send us your CV
+              and tell us what you&apos;d build here.
             </p>
             <a
-              href="mailto:careers@elyonware.com"
+              href="mailto:contact@elyonware.com"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[#5865f2]/60 bg-[#5865f2]/10 text-white font-semibold hover:bg-[#5865f2]/20 transition-all duration-200"
             >
-              careers@elyonware.com
+              contact@elyonware.com
             </a>
           </div>
         </section>
-
       </main>
       <Footer />
     </>
   );
 }
 
-function JobCard({ job }: { job: typeof OPENINGS[0] }) {
+const CARD_BG: Record<string, { base: string; light: string }> = {
+  "#a855f7": { base: "#1c1330", light: "#241a3d" },
+  "#00d4ff": { base: "#04212b", light: "#063040" },
+  "#f472b6": { base: "#2b1220", light: "#361629" },
+};
+
+function JobCard({ job }: { job: (typeof OPENINGS)[0] }) {
+  const cardBg = CARD_BG[job.accent] ?? { base: "#111214", light: "#181a1f" };
   return (
     <details
-      className="group rounded-3xl overflow-hidden transition-all duration-200"
-      style={{ border: `1px solid ${job.accent}22`, background: `${job.accent}08` }}
+      className="group relative z-10 rounded-3xl overflow-hidden transition-all duration-200"
+      style={{ border: `1px solid ${job.accent}22`, background: cardBg.base }}
     >
       <summary className="flex items-center justify-between gap-4 px-7 py-6 cursor-pointer list-none select-none">
         <div className="flex items-center gap-5 min-w-0">
           {/* Accent bar */}
-          <div className="flex-shrink-0 w-1 h-10 rounded-full" style={{ background: job.accent }} />
+          <div
+            className="flex-shrink-0 w-1 h-10 rounded-full"
+            style={{ background: job.accent }}
+          />
           <div className="min-w-0">
             <div className="flex items-center gap-3 mb-1 flex-wrap">
-              <p className="text-white font-black text-lg leading-snug">{job.title}</p>
+              <p className="text-white font-black text-xl leading-snug">
+                {job.title}
+              </p>
               <span
                 className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border"
-                style={{ color: job.accent, borderColor: `${job.accent}50`, background: `${job.accent}18` }}
+                style={{
+                  color: job.accent,
+                  borderColor: `${job.accent}50`,
+                  background: `${job.accent}18`,
+                }}
               >
                 {job.tag}
               </span>
             </div>
-            <p className="text-white text-sm">{job.department} · {job.location} · {job.posted}</p>
+            <p className="text-white text-base">
+              {job.department} · {job.location} · {job.posted}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-4 flex-shrink-0">
           <span
             className="hidden sm:block text-xs font-semibold px-3 py-1 rounded-full border"
-            style={{ color: job.accent, borderColor: `${job.accent}40`, background: `${job.accent}12` }}
+            style={{
+              color: job.accent,
+              borderColor: `${job.accent}40`,
+              background: `${job.accent}12`,
+            }}
           >
             {job.type}
           </span>
@@ -294,16 +362,32 @@ function JobCard({ job }: { job: typeof OPENINGS[0] }) {
             className="w-8 h-8 rounded-full flex items-center justify-center group-open:rotate-180 transition-transform duration-200"
             style={{ background: `${job.accent}20` }}
           >
-            <svg className="w-4 h-4" style={{ color: job.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            <svg
+              className="w-4 h-4"
+              style={{ color: job.accent }}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </div>
       </summary>
 
       {/* Expanded */}
-      <div className="px-7 pb-8 pt-6" style={{ borderTop: `1px solid ${job.accent}18` }}>
-        <p className="text-white leading-relaxed mb-8 text-base max-w-3xl">{job.desc}</p>
+      <div
+        className="px-7 pb-8 pt-6"
+        style={{ borderTop: `1px solid ${job.accent}18` }}
+      >
+        <p className="text-white leading-relaxed mb-8 text-lg max-w-3xl">
+          {job.desc}
+        </p>
 
         <div className="grid sm:grid-cols-2 gap-8 mb-8">
           <div>
@@ -315,19 +399,33 @@ function JobCard({ job }: { job: typeof OPENINGS[0] }) {
             </h4>
             <ul className="flex flex-col gap-3">
               {job.requirements.map((r) => (
-                <li key={r} className="flex items-start gap-3 text-sm text-white">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: job.accent }} />
+                <li
+                  key={r}
+                  className="flex items-start gap-3 text-base text-white"
+                >
+                  <span
+                    className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ background: job.accent }}
+                  />
                   {r}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white mb-4">Nice to have</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-white mb-4">
+              Nice to have
+            </h4>
             <ul className="flex flex-col gap-3">
               {job.nice.map((n) => (
-                <li key={n} className="flex items-start gap-3 text-sm text-white">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 opacity-40" style={{ background: job.accent }} />
+                <li
+                  key={n}
+                  className="flex items-start gap-3 text-base text-white"
+                >
+                  <span
+                    className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 opacity-40"
+                    style={{ background: job.accent }}
+                  />
                   {n}
                 </li>
               ))}
@@ -335,14 +433,26 @@ function JobCard({ job }: { job: typeof OPENINGS[0] }) {
           </div>
         </div>
 
-        <div className="rounded-2xl px-6 py-6" style={{ border: `1px solid ${job.accent}22`, background: `${job.accent}0d` }}>
-          <h4 className="text-white font-bold text-base mb-3">How to apply?</h4>
-          <p className="text-sm text-white leading-relaxed">
+        <div
+          className="rounded-2xl px-6 py-6"
+          style={{
+            border: `1px solid ${job.accent}22`,
+            background: cardBg.light,
+          }}
+        >
+          <h4 className="text-white font-bold text-lg mb-3">How to apply?</h4>
+          <p className="text-base text-white leading-relaxed">
             If you are interested in this role, write to{" "}
-            <a href={`mailto:contact@elyonware.com?subject=${job.title} Career`} className="font-bold underline underline-offset-2" style={{ color: job.accent }}>
+            <a
+              href={`mailto:contact@elyonware.com?subject=${job.title} Career`}
+              className="font-bold underline underline-offset-2"
+              style={{ color: job.accent }}
+            >
               contact@elyonware.com
             </a>{" "}
-            with a detailed CV highlighting your relevant experience. Please mark &ldquo;<strong>{job.title} Career</strong>&rdquo; in the subject line.
+            with a detailed CV highlighting your relevant experience. Please
+            mark &ldquo;<strong>{job.title} Career</strong>&rdquo; in the
+            subject line.
           </p>
         </div>
       </div>

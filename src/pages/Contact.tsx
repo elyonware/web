@@ -106,8 +106,6 @@ export default function ContactPage() {
         {/* ── Contact channels ── */}
         <section className="py-8 px-4 sm:px-6 pb-24">
           <div className="max-w-5xl mx-auto">
-           
-
             <div className="relative">
               <img
                 src="/robot3-lay-on-belly.png"
@@ -128,14 +126,14 @@ export default function ContactPage() {
                   <a
                     key={c.label}
                     href={c.href}
-                    className="group flex items-center gap-4 p-6 rounded-2xl border border-white/[0.1] bg-[#12142e] hover:bg-[#181b3a] transition-colors"
+                    className="group relative z-10 flex items-center gap-4 p-6 rounded-2xl border border-white/[0.1] bg-[#12142e] hover:bg-[#181b3a] transition-colors"
                   >
                     <div className={`flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl transition-colors ${c.iconBg} ${c.accent}`}>
                       {c.icon}
                     </div>
                     <div>
-                      <div className="text-xs text-white/60 mb-0.5">{c.label}</div>
-                      <div className={`text-base font-semibold text-white transition-colors ${c.hoverText}`}>
+                      <div className="text-sm text-white/60 mb-0.5">{c.label}</div>
+                      <div className={`text-lg font-semibold text-white transition-colors ${c.hoverText}`}>
                         {c.value}
                       </div>
                     </div>
@@ -146,28 +144,28 @@ export default function ContactPage() {
 
             <div className="grid sm:grid-cols-2 gap-4 mt-10">
               {/* Response time */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
-                <h3 className="font-bold text-white mb-3">Response time</h3>
-                <p className="text-sm text-white leading-relaxed mb-4">
+              <div className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
+                <h3 className="font-bold text-lg text-white mb-3">Response time</h3>
+                <p className="text-base text-white leading-relaxed mb-4">
                   We aim to respond to every enquiry within{" "}
                   <span className="text-indigo-300 font-semibold">24–48 hours</span>{" "}
                   on business days.
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-sm text-white">Currently accepting new projects</span>
+                  <span className="text-base text-white">Currently accepting new projects</span>
                 </div>
               </div>
 
               {/* Quick links */}
-              <div className="p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
-                <h3 className="font-bold text-white mb-4">Explore first</h3>
+              <div className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
+                <h3 className="font-bold text-lg text-white mb-4">Explore first</h3>
                 <div className="flex flex-col gap-2">
                   {QUICK_LINKS.map((l) => (
                     <Link
                       key={l.label}
                       to={l.href}
-                      className="flex items-center justify-between py-2 border-b border-white/[0.06] last:border-0 text-sm text-white hover:text-indigo-300 transition-colors group"
+                      className="flex items-center justify-between py-2 border-b border-white/[0.06] last:border-0 text-base text-white hover:text-indigo-300 transition-colors group"
                     >
                       {l.label}
                       <svg

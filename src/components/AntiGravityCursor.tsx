@@ -165,7 +165,7 @@ export default function AntiGravityCursor() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-30 mix-blend-screen"
+      className="pointer-events-none fixed inset-0 z-[1] mix-blend-screen"
     />
   );
 }

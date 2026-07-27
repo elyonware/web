@@ -47,7 +47,7 @@ const VALUES = [
     ),
     title: "Move Fast",
     desc: "We ship, iterate and learn. Speed is a competitive advantage — we embrace it without sacrificing quality.",
-    accent: "from-indigo-500/20 to-blue-500/10",
+    bg: "#141a3d",
     iconBg: "bg-indigo-500/20 text-indigo-400",
   },
   {
@@ -68,7 +68,7 @@ const VALUES = [
     ),
     title: "Own the Outcome",
     desc: "We take full responsibility for every project. No finger-pointing — just solutions and accountability.",
-    accent: "from-violet-500/20 to-purple-500/10",
+    bg: "#1c1330",
     iconBg: "bg-violet-500/20 text-violet-400",
   },
   {
@@ -89,7 +89,7 @@ const VALUES = [
     ),
     title: "Build Together",
     desc: "The best solutions emerge from close collaboration — with clients, partners and within our team.",
-    accent: "from-cyan-500/20 to-blue-500/10",
+    bg: "#04212b",
     iconBg: "bg-cyan-500/20 text-cyan-400",
   },
   {
@@ -110,7 +110,7 @@ const VALUES = [
     ),
     title: "Stay Curious",
     desc: "Technology never stops evolving. Neither do we. Every problem is a chance to learn something new.",
-    accent: "from-amber-500/20 to-orange-500/10",
+    bg: "#2b210a",
     iconBg: "bg-amber-500/20 text-amber-400",
   },
   {
@@ -131,7 +131,7 @@ const VALUES = [
     ),
     title: "Earn Trust",
     desc: "We never overpromise. Honest timelines, transparent communication and work that speaks for itself.",
-    accent: "from-emerald-500/20 to-teal-500/10",
+    bg: "#0c2620",
     iconBg: "bg-emerald-500/20 text-emerald-400",
   },
   {
@@ -152,7 +152,7 @@ const VALUES = [
     ),
     title: "Think Global",
     desc: "We build with international standards from day one — scalable, compliant and ready for any market.",
-    accent: "from-purple-500/20 to-pink-500/10",
+    bg: "#241030",
     iconBg: "bg-purple-500/20 text-purple-400",
   },
 ];
@@ -206,7 +206,7 @@ export default function AboutPage() {
           {ABOUT_SECTIONS.map((s) => (
             <div
               key={s.title}
-              className={`flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-white/[0.02]`}
+              className={`relative z-10 flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-[#0d0f1a]`}
             >
               <div className="relative lg:w-[52%] h-72 lg:h-auto flex-shrink-0">
                 <img
@@ -239,7 +239,7 @@ export default function AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Mission */}
-            <div className="rounded-3xl overflow-hidden border border-indigo-500/20 bg-gradient-to-br from-indigo-950/60 to-violet-950/40 backdrop-blur-md">
+            <div className="relative z-10 rounded-3xl overflow-hidden border border-indigo-500/20 bg-[#141a3d]">
               <div className="relative h-52 w-full">
                 <img
                   src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80"
@@ -284,7 +284,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision */}
-            <div className="rounded-3xl overflow-hidden border border-violet-500/20 bg-gradient-to-br from-violet-950/60 to-purple-950/40 backdrop-blur-md">
+            <div className="relative z-10 rounded-3xl overflow-hidden border border-violet-500/20 bg-[#1c1330]">
               <div className="relative h-52 w-full">
                 <img
                   src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80"
@@ -339,7 +339,8 @@ export default function AboutPage() {
             {VALUES.map((v) => (
               <div
                 key={v.title}
-                className={`group p-6 rounded-2xl bg-gradient-to-br ${v.accent} border border-white/[0.08] hover:border-white/20 backdrop-blur-md transition-all duration-300`}
+                className="group relative z-10 p-6 rounded-2xl border border-white/[0.08] hover:border-white/20 transition-all duration-300"
+                style={{ background: v.bg }}
               >
                 <div
                   className={`w-10 h-10 flex items-center justify-center rounded-xl ${v.iconBg} mb-4 transition-colors`}
