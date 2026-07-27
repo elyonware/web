@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 
 const OPENINGS = [
@@ -226,8 +225,8 @@ export default function CareersPage() {
               <p className="text-white font-bold text-lg">Interested in an internship?</p>
               <p className="text-white mt-1 text-sm">Send your CV and let us know what you&apos;d like to work on.</p>
             </div>
-            <Link
-              to="/careers/apply"
+            <a
+              href="mailto:contact@elyonware.com?subject=Internship Application"
               className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-sm text-white transition-all duration-200 hover:opacity-90"
               style={{ background: "#f472b6", boxShadow: "0 0 24px #f472b640" }}
             >
@@ -235,7 +234,7 @@ export default function CareersPage() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -336,8 +335,8 @@ function JobCard({ job }: { job: typeof OPENINGS[0] }) {
           </div>
         </div>
 
-        <Link
-          to={job.type === "Full-time" ? `/careers/apply-fulltime?role=${job.id}` : `/careers/apply`}
+        <a
+          href={`mailto:contact@elyonware.com?subject=Application for ${job.title}`}
           className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-sm text-white transition-all duration-200 hover:opacity-90"
           style={{ background: job.accent, boxShadow: `0 0 24px ${job.accent}50` }}
         >
@@ -345,7 +344,7 @@ function JobCard({ job }: { job: typeof OPENINGS[0] }) {
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </Link>
+        </a>
       </div>
     </details>
   );
