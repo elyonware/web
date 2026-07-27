@@ -335,16 +335,16 @@ function JobCard({ job }: { job: typeof OPENINGS[0] }) {
           </div>
         </div>
 
-        <a
-          href={`mailto:contact@elyonware.com?subject=Application for ${job.title}`}
-          className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-sm text-white transition-all duration-200 hover:opacity-90"
-          style={{ background: job.accent, boxShadow: `0 0 24px ${job.accent}50` }}
-        >
-          Apply for this role
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+        <div className="rounded-2xl px-6 py-6" style={{ border: `1px solid ${job.accent}22`, background: `${job.accent}0d` }}>
+          <h4 className="text-white font-bold text-base mb-3">How to apply?</h4>
+          <p className="text-sm text-white leading-relaxed">
+            If you are interested in this role, write to{" "}
+            <a href={`mailto:contact@elyonware.com?subject=${job.title} Career`} className="font-bold underline underline-offset-2" style={{ color: job.accent }}>
+              contact@elyonware.com
+            </a>{" "}
+            with a detailed CV highlighting your relevant experience. Please mark &ldquo;<strong>{job.title} Career</strong>&rdquo; in the subject line.
+          </p>
+        </div>
       </div>
     </details>
   );
