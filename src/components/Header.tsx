@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 /* ── Products ───────────────────────────────────────────── */
 const PRODUCTS = [
@@ -246,6 +246,8 @@ function DemoModal({ product, onClose }: { product: DemoProduct; onClose: () => 
 
 /* ── Header ─────────────────────────────────────────────── */
 export default function Header() {
+  const { pathname } = useLocation();
+  const isActive = (path: string) => pathname === path;
   const [open, setOpen]           = useState<DropdownKey>(null);
   const [scrolled, setScrolled]   = useState(false);
   const [visible, setVisible]     = useState(true);
@@ -314,9 +316,9 @@ export default function Header() {
                 Services <Chevron open={open === "services"} />
               </button>
             </div>
-            <Link to="/about" className="px-4 py-2 text-[17px] font-semibold text-white rounded-[30px] hover:bg-white/[0.06] transition-all duration-150">About</Link>
-            <Link to="/careers" className="px-4 py-2 text-[17px] font-semibold text-white rounded-[30px] hover:bg-white/[0.06] transition-all duration-150">Careers</Link>
-            <Link to="/contact" className="px-4 py-2 text-[17px] font-semibold text-white rounded-[30px] hover:bg-white/[0.06] transition-all duration-150">Contact us</Link>
+            <Link to="/about" className={`px-4 py-2 text-[17px] font-semibold text-white rounded-[30px] transition-all duration-150 ${isActive("/about") ? "bg-white/[0.08]" : "hover:bg-white/[0.06]"}`}>About</Link>
+            <Link to="/careers" className={`px-4 py-2 text-[17px] font-semibold text-white rounded-[30px] transition-all duration-150 ${isActive("/careers") ? "bg-white/[0.08]" : "hover:bg-white/[0.06]"}`}>Careers</Link>
+            <Link to="/contact" className={`px-4 py-2 text-[17px] font-semibold text-white rounded-[30px] transition-all duration-150 ${isActive("/contact") ? "bg-white/[0.08]" : "hover:bg-white/[0.06]"}`}>Contact us</Link>
           </nav>
 
           {/* ── Hamburger ── */}
@@ -522,9 +524,9 @@ export default function Header() {
                 </div>
               )}
 
-              <Link to="/about" onClick={closeMobile} className="px-4 py-3 text-base font-semibold text-white rounded-[30px] hover:bg-white/[0.07] transition-colors">About</Link>
-              <Link to="/careers" onClick={closeMobile} className="px-4 py-3 text-base font-semibold text-white rounded-[30px] hover:bg-white/[0.07] transition-colors">Careers</Link>
-              <Link to="/contact" onClick={closeMobile} className="px-4 py-3 text-base font-semibold text-white rounded-[30px] hover:bg-white/[0.07] transition-colors">Contact us</Link>
+              <Link to="/about" onClick={closeMobile} className={`px-4 py-3 text-base font-semibold text-white rounded-[30px] transition-colors ${isActive("/about") ? "bg-white/[0.08]" : "hover:bg-white/[0.07]"}`}>About</Link>
+              <Link to="/careers" onClick={closeMobile} className={`px-4 py-3 text-base font-semibold text-white rounded-[30px] transition-colors ${isActive("/careers") ? "bg-white/[0.08]" : "hover:bg-white/[0.07]"}`}>Careers</Link>
+              <Link to="/contact" onClick={closeMobile} className={`px-4 py-3 text-base font-semibold text-white rounded-[30px] transition-colors ${isActive("/contact") ? "bg-white/[0.08]" : "hover:bg-white/[0.07]"}`}>Contact us</Link>
               <div className="my-3 h-px bg-white/[0.08]" />
             </div>
           </div>
