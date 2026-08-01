@@ -162,7 +162,7 @@ export default function AboutPage() {
     <>
       <SEO
         title="About Elyonware | Our Story, Mission & Values"
-        description="Founded in 2024, Elyonware is on a mission to make powerful software, AI and connected systems accessible to every organisation — regardless of size."
+        description="Founded in 2026, Elyonware is on a mission to make powerful software, AI and connected systems accessible to every organisation — regardless of size."
         path="/about"
       />
       <main
