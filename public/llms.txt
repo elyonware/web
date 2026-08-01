@@ -4,6 +4,8 @@
 
 Elyonware is a small, senior, in-house engineering team (not an outsourcing agency or marketplace). It takes on end-to-end product work: scoping, architecture, build, and post-launch support.
 
+Elyonware is the trading/brand name of **Elyonware Technologies LLP**, registered in Meghalaya, India.
+
 ## What Elyonware does
 
 - **Custom Websites & Apps** — web and mobile products built around a client's workflow.

@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
 
           <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-white text-sm">© 2026 Elyonware, Inc. All rights reserved.</p>
+            <p className="text-white text-sm">© 2026 Elyonware Technologies LLP. All rights reserved.</p>
           </div>
         </div>
       </footer>
