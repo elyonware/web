@@ -342,7 +342,15 @@ export default function Home() {
         </section>
 
         <section className="px-3 py-8">
-          <Reveal className="relative overflow-hidden rounded-[2rem] bg-white text-slate-950 px-4 py-20 sm:rounded-[2.5rem] sm:px-6 lg:py-24">
+          <Reveal className="relative overflow-hidden rounded-[2rem] bg-white text-slate-950 px-4 pt-12 pb-20 sm:rounded-[2.5rem] sm:px-6 sm:py-20 lg:py-24">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_0%,#000_40%,transparent_100%)]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, rgba(124,58,237,0.10) 1px, transparent 1px)",
+                backgroundSize: "22px 22px",
+              }}
+            />
             <div className="pointer-events-none absolute -bottom-48 -right-48 h-[42rem] w-[42rem] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(124,58,237,0.22),rgba(37,99,235,0.18),rgba(8,145,178,0.16),rgba(219,39,119,0.14),rgba(124,58,237,0.22))] blur-[100px]" />
             <div className="relative mx-auto max-w-7xl">
               <div className="mb-14 max-w-3xl">
@@ -392,7 +400,7 @@ export default function Home() {
         </section>
 
         <section id="services" className="px-3 py-8">
-          <Reveal className="relative overflow-hidden rounded-[2rem] bg-slate-50 text-slate-950 px-4 py-20 sm:rounded-[2.5rem] sm:px-6 lg:py-28">
+          <Reveal className="relative overflow-hidden rounded-[2rem] bg-slate-50 text-slate-950 px-4 pt-12 pb-20 sm:rounded-[2.5rem] sm:px-6 sm:py-20 lg:py-28">
             <div className="pointer-events-none absolute -bottom-48 -right-48 h-[42rem] w-[42rem] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(37,99,235,0.20),rgba(5,150,105,0.16),rgba(234,88,12,0.14),rgba(219,39,119,0.16),rgba(37,99,235,0.20))] blur-[100px]" />
             <div className="relative mx-auto max-w-7xl">
               <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end">

@@ -1,220 +1,397 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Services | Elyonware</title>
-<meta name="description" content="Software development, cloud & data, IoT, AI & ML, IT consulting and digital platform services from Elyonware." />
-<link rel="icon" href="assets/logo.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css" />
-<script>document.documentElement.classList.add("has-js");</script>
-</head>
-<body data-page="services">
-
-<header class="site-header">
-  <div class="container nav">
-    <a href="index.html" class="nav-logo"><img src="assets/logo-dark.svg" alt="Elyonware" /></a>
-    <nav class="nav-links">
-      <a href="index.html" data-page="home">Home</a>
-      <a href="services.html" data-page="services">Services</a>
-      <a href="about.html" data-page="about">About</a>
-      <a href="careers.html" data-page="careers">Careers</a>
-      <a href="contact.html" data-page="contact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <a href="contact.html" class="btn btn-ghost">Contact us</a>
-      <a href="contact.html" class="btn btn-primary">Get a quote</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="page-hero">
-    <div class="container">
-      <span class="eyebrow" style="justify-content:center;">What we do</span>
-      <h1>Services built for the full technology stack.</h1>
-      <p>We design, build and operate technology across six core disciplines — engaged as a full delivery partner or a focused specialist team.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container" style="display:flex;flex-direction:column;gap:64px;">
-
-      <div class="split" data-reveal>
-        <div class="split-copy">
-          <span class="eyebrow">01 / Development</span>
-          <h3>Software &amp; Application Development</h3>
-          <p>Bespoke web apps, mobile apps and enterprise systems — from MVPs to production-grade platforms built to scale.</p>
-          <ul style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-            <li style="color:var(--slate);font-size:0.95rem;">— Web &amp; mobile application development</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Enterprise system design</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— API &amp; backend architecture</li>
-          </ul>
-        </div>
-        <div class="split-media"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80" alt="Software development" /></div>
-      </div>
-
-      <div class="split reverse" data-reveal>
-        <div class="split-media"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=900&q=80" alt="Cloud infrastructure" /></div>
-        <div class="split-copy">
-          <span class="eyebrow">02 / Infrastructure</span>
-          <h3>Cloud Platforms &amp; Data Management</h3>
-          <p>Architecture, deployment and management of cloud platforms and data systems that power modern businesses.</p>
-          <ul style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-            <li style="color:var(--slate);font-size:0.95rem;">— Cloud architecture &amp; migration</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Data pipelines &amp; warehousing</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— DevOps &amp; managed infrastructure</li>
-          </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Elyonware</title>
+    <meta
+      name="description"
+      content="Software development, cloud & data, IoT, AI & ML, IT consulting and digital platform services from Elyonware."
+    />
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+      document.documentElement.classList.add("has-js");
+    </script>
+  </head>
+  <body data-page="services">
+    <header class="site-header">
+      <div class="container nav">
+        <a href="index.html" class="nav-logo"
+          ><img src="assets/logo-dark.svg" alt="Elyonware"
+        /></a>
+        <nav class="nav-links">
+          <a href="index.html" data-page="home">Home</a>
+          <a href="services.html" data-page="services">Services</a>
+          <a href="about.html" data-page="about">About</a>
+          <a href="careers.html" data-page="careers">Careers</a>
+          <a href="contact.html" data-page="contact">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-ghost">Contact us</a>
+          <a href="contact.html" class="btn btn-primary">Get a quote</a>
+          <button
+            class="nav-toggle"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <span></span>
+          </button>
         </div>
       </div>
+    </header>
 
-      <div class="split" data-reveal>
-        <div class="split-copy">
-          <span class="eyebrow">03 / Hardware</span>
-          <h3>IoT &amp; Embedded Systems</h3>
-          <p>IoT devices, embedded systems and connected hardware — bridging physical and digital worlds for smart environments.</p>
-          <ul style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-            <li style="color:var(--slate);font-size:0.95rem;">— Embedded firmware development</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Sensor &amp; device integration</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Connected hardware products</li>
-          </ul>
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow" style="justify-content: center"
+            >What we do</span
+          >
+          <h1>Services built for the full technology stack.</h1>
+          <p>
+            We design, build and operate technology across six core disciplines
+            — engaged as a full delivery partner or a focused specialist team.
+          </p>
         </div>
-        <div class="split-media"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="IoT and embedded systems" /></div>
-      </div>
+      </section>
 
-      <div class="split reverse" data-reveal>
-        <div class="split-media"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=900&q=80" alt="AI and machine learning" /></div>
-        <div class="split-copy">
-          <span class="eyebrow">04 / Intelligence</span>
-          <h3>AI, Machine Learning &amp; Biometrics</h3>
-          <p>Computer vision, facial recognition and biometric systems — turning machine intelligence into measurable outcomes.</p>
-          <ul style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-            <li style="color:var(--slate);font-size:0.95rem;">— Computer vision pipelines</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Biometric identification systems</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Applied ML &amp; automation</li>
-          </ul>
+      <section class="section">
+        <div
+          class="container"
+          style="display: flex; flex-direction: column; gap: 64px"
+        >
+          <div class="split" data-reveal>
+            <div class="split-copy">
+              <span class="eyebrow">01 / Development</span>
+              <h3>Software &amp; Application Development</h3>
+              <p>
+                Bespoke web apps, mobile apps and enterprise systems — from MVPs
+                to production-grade platforms built to scale.
+              </p>
+              <ul
+                style="
+                  margin-top: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Web &amp; mobile application development
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Enterprise system design
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — API &amp; backend architecture
+                </li>
+              </ul>
+            </div>
+            <div class="split-media">
+              <img
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80"
+                alt="Software development"
+              />
+            </div>
+          </div>
+
+          <div class="split reverse" data-reveal>
+            <div class="split-media">
+              <img
+                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=900&q=80"
+                alt="Cloud infrastructure"
+              />
+            </div>
+            <div class="split-copy">
+              <span class="eyebrow">02 / Infrastructure</span>
+              <h3>Cloud Platforms &amp; Data Management</h3>
+              <p>
+                Architecture, deployment and management of cloud platforms and
+                data systems that power modern businesses.
+              </p>
+              <ul
+                style="
+                  margin-top: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Cloud architecture &amp; migration
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Data pipelines &amp; warehousing
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — DevOps &amp; managed infrastructure
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="split" data-reveal>
+            <div class="split-copy">
+              <span class="eyebrow">03 / Hardware</span>
+              <h3>IoT &amp; Embedded Systems</h3>
+              <p>
+                IoT devices, embedded systems and connected hardware — bridging
+                physical and digital worlds for smart environments.
+              </p>
+              <ul
+                style="
+                  margin-top: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Embedded firmware development
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Sensor &amp; device integration
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Connected hardware products
+                </li>
+              </ul>
+            </div>
+            <div class="split-media">
+              <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                alt="IoT and embedded systems"
+              />
+            </div>
+          </div>
+
+          <div class="split reverse" data-reveal>
+            <div class="split-media">
+              <img
+                src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=900&q=80"
+                alt="AI and machine learning"
+              />
+            </div>
+            <div class="split-copy">
+              <span class="eyebrow">04 / Intelligence</span>
+              <h3>AI, Machine Learning &amp; Biometrics</h3>
+              <p>
+                Computer vision, facial recognition and biometric systems —
+                turning machine intelligence into measurable outcomes.
+              </p>
+              <ul
+                style="
+                  margin-top: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Computer vision pipelines
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Biometric identification systems
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Applied ML &amp; automation
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="split" data-reveal>
+            <div class="split-copy">
+              <span class="eyebrow">05 / Advisory</span>
+              <h3>IT Consulting &amp; System Integration</h3>
+              <p>
+                Strategy, implementation and integration services that align
+                technology with business goals across complex environments.
+              </p>
+              <ul
+                style="
+                  margin-top: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Technology strategy &amp; roadmapping
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Legacy system integration
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Vendor &amp; architecture audits
+                </li>
+              </ul>
+            </div>
+            <div class="split-media">
+              <img
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80"
+                alt="IT consulting"
+              />
+            </div>
+          </div>
+
+          <div class="split reverse" data-reveal>
+            <div class="split-media">
+              <img
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
+                alt="Digital platforms"
+              />
+            </div>
+            <div class="split-copy">
+              <span class="eyebrow">06 / Platforms</span>
+              <h3>Digital Platforms &amp; Marketplaces</h3>
+              <p>
+                End-to-end development and operation of aggregator platforms,
+                marketplaces and connected digital ecosystems.
+              </p>
+              <ul
+                style="
+                  margin-top: 18px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              >
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Marketplace &amp; aggregator platforms
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Multi-sided platform operations
+                </li>
+                <li style="color: var(--slate); font-size: 0.95rem">
+                  — Ecosystem integrations
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section-head center" data-reveal>
+            <span class="eyebrow">Engagement models</span>
+            <h2>Work with us the way that fits your team.</h2>
+          </div>
+          <div class="grid-3">
+            <div class="card" data-reveal>
+              <span class="tag-pill">Fixed scope</span>
+              <h3>Project delivery</h3>
+              <p>
+                A defined scope, timeline and budget — ideal for a specific
+                product, platform or migration.
+              </p>
+            </div>
+            <div class="card" data-reveal>
+              <span class="tag-pill">Ongoing</span>
+              <h3>Dedicated team</h3>
+              <p>
+                An embedded team that works as an extension of yours, iterating
+                continuously on your roadmap.
+              </p>
+            </div>
+            <div class="card" data-reveal>
+              <span class="tag-pill">Advisory</span>
+              <h3>Consulting retainer</h3>
+              <p>
+                Strategic and technical guidance on demand — architecture
+                reviews, audits and roadmap planning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta-band" data-reveal>
+            <h2>Not sure which service fits?</h2>
+            <p>
+              Tell us what you're building — we'll help you figure out the right
+              approach, at no cost.
+            </p>
+            <div class="hero-actions">
+              <a href="contact.html" class="btn btn-primary">Talk to us →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img src="assets/logo-white.png" alt="Elyonware" />
+            <p>Building the technology behind tomorrow's businesses.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://hilabi.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Hilabi</a
+                >
+              </li>
+              <li><a href="index.html#products">Assessment System</a></li>
+              <li><a href="index.html#products">Scholar MS</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="services.html">Software Dev</a></li>
+              <li><a href="services.html">Cloud &amp; Data</a></li>
+              <li><a href="services.html">IoT &amp; Embedded</a></li>
+              <li><a href="services.html">AI &amp; ML</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="careers.html">Careers</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; <span data-year></span> Elyonware Technologies LLP. All
+            rights reserved.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="LinkedIn"
+              ><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="X"
+              ><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.6L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6.1L18.9 2zm-1.2 18h1.9L7.4 4H5.3l12.4 16z"
+                /></svg
+            ></a>
+          </div>
         </div>
       </div>
+    </footer>
 
-      <div class="split" data-reveal>
-        <div class="split-copy">
-          <span class="eyebrow">05 / Advisory</span>
-          <h3>IT Consulting &amp; System Integration</h3>
-          <p>Strategy, implementation and integration services that align technology with business goals across complex environments.</p>
-          <ul style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-            <li style="color:var(--slate);font-size:0.95rem;">— Technology strategy &amp; roadmapping</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Legacy system integration</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Vendor &amp; architecture audits</li>
-          </ul>
-        </div>
-        <div class="split-media"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="IT consulting" /></div>
-      </div>
-
-      <div class="split reverse" data-reveal>
-        <div class="split-media"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Digital platforms" /></div>
-        <div class="split-copy">
-          <span class="eyebrow">06 / Platforms</span>
-          <h3>Digital Platforms &amp; Marketplaces</h3>
-          <p>End-to-end development and operation of aggregator platforms, marketplaces and connected digital ecosystems.</p>
-          <ul style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-            <li style="color:var(--slate);font-size:0.95rem;">— Marketplace &amp; aggregator platforms</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Multi-sided platform operations</li>
-            <li style="color:var(--slate);font-size:0.95rem;">— Ecosystem integrations</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow">Engagement models</span>
-        <h2>Work with us the way that fits your team.</h2>
-      </div>
-      <div class="grid-3">
-        <div class="card" data-reveal>
-          <span class="tag-pill">Fixed scope</span>
-          <h3>Project delivery</h3>
-          <p>A defined scope, timeline and budget — ideal for a specific product, platform or migration.</p>
-        </div>
-        <div class="card" data-reveal>
-          <span class="tag-pill">Ongoing</span>
-          <h3>Dedicated team</h3>
-          <p>An embedded team that works as an extension of yours, iterating continuously on your roadmap.</p>
-        </div>
-        <div class="card" data-reveal>
-          <span class="tag-pill">Advisory</span>
-          <h3>Consulting retainer</h3>
-          <p>Strategic and technical guidance on demand — architecture reviews, audits and roadmap planning.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="cta-band" data-reveal>
-        <h2>Not sure which service fits?</h2>
-        <p>Tell us what you're building — we'll help you figure out the right approach, at no cost.</p>
-        <div class="hero-actions">
-          <a href="contact.html" class="btn btn-primary">Talk to us →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="assets/logo-white.png" alt="Elyonware" />
-        <p>Building the full stack of modern technology — from hardware to frontier AI.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Products</h4>
-        <ul>
-          <li><a href="https://hilabi.com" target="_blank" rel="noopener noreferrer">Hilabi</a></li>
-          <li><a href="index.html#products">Assessment System</a></li>
-          <li><a href="index.html#products">Scholar MS</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="services.html">Software Dev</a></li>
-          <li><a href="services.html">Cloud &amp; Data</a></li>
-          <li><a href="services.html">IoT &amp; Embedded</a></li>
-          <li><a href="services.html">AI &amp; ML</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; <span data-year></span> Elyonware Technologies LLP. All rights reserved.</p>
-      <div class="footer-socials">
-        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
-        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.6L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6.1L18.9 2zm-1.2 18h1.9L7.4 4H5.3l12.4 16z"/></svg></a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>
