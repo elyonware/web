@@ -37,7 +37,7 @@ export default function SEO({
   noindex?: boolean;
 }) {
   useEffect(() => {
-    const fullTitle = `${title} | Elyonware`;
+    const fullTitle = title;
     const canonical = `${BASE_URL}${path}`;
     const imageUrl = image ?? SOCIAL_IMAGE_URL;
 
