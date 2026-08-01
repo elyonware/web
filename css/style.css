@@ -150,12 +150,45 @@ input, textarea, select { font-family: inherit; }
 .nav-toggle.is-open span::before { top: 0; transform: rotate(45deg); }
 .nav-toggle.is-open span::after { top: 0; transform: rotate(-45deg); }
 
+/* Standalone mobile menu panel — deliberately NOT nested inside
+   .site-header. Header uses backdrop-filter, which per spec makes it
+   the containing block for any position:fixed descendant, so a fixed
+   panel nested inside it resolves top/bottom against the header's own
+   (short) box instead of the viewport and collapses to ~0 height. */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0; bottom: 0;
+  z-index: 90;
+  background: #fff;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 12px;
+  gap: 4px;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  overflow-y: auto;
+}
+.mobile-menu > a { padding: 14px 16px; border-radius: 999px; font-size: 1rem; font-weight: 600; color: var(--slate); }
+.mobile-menu > a:hover, .mobile-menu > a.active { color: var(--navy); background: var(--bg-alt); }
+.mobile-menu.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
 @media (max-width: 860px) {
-  .nav-links { position: fixed; top: 76px; left: 0; right: 0; bottom: 0; background: #fff; flex-direction: column; align-items: stretch; padding: 12px; gap: 4px; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 0.2s var(--ease), transform 0.2s var(--ease); overflow-y: auto; }
-  .nav-links.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .nav-links a { padding: 14px 16px; font-size: 1rem; }
-  .nav-actions .btn-ghost { display: none; }
+  .nav-logo img { height: 22px; }
+  .nav-links { display: none; }
+  .nav-actions .btn-ghost, .nav-actions .btn-primary { display: none; }
   .nav-toggle { display: flex; }
+  .nav { height: 64px; }
+  .mobile-menu { display: flex; }
+  .nav-mobile-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+}
+@media (min-width: 861px) {
+  .nav-mobile-actions { display: none; }
+}
+@media (max-width: 400px) {
+  .nav-logo img { height: 19px; }
 }
 
 /* ---------- hero ---------- */

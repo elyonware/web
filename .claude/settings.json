@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(google-chrome --headless=new --disable-gpu --no-sandbox --window-size=390,900 --screenshot=/tmp/mobile_header_fixed.png --virtual-time-budget=3000 http://localhost:8920/index.html)",
+      "Bash(python3 -c \"import selenium\")"
+    ]
+  }
+}

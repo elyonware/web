@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ---- mobile nav toggle ---- */
   const toggle = document.querySelector(".nav-toggle");
-  const links = document.querySelector(".nav-links");
+  const links = document.querySelector("#mobileMenu");
   if (toggle && links) {
     toggle.addEventListener("click", () => {
       const open = toggle.classList.toggle("is-open");
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---- mark active nav link ---- */
   const current = document.body.dataset.page;
   if (current) {
-    document.querySelectorAll(".nav-links a[data-page]").forEach((a) => {
+    document.querySelectorAll(".nav-links a[data-page], .mobile-menu a[data-page]").forEach((a) => {
       if (a.dataset.page === current) a.classList.add("active");
     });
   }
