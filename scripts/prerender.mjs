@@ -8,11 +8,27 @@
 // client bundle still loads and re-renders on top when a browser visits.
 
 import { chromium } from "playwright";
-import { spawn } from "node:child_process";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { spawn, execSync } from "node:child_process";
+import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+function killTree(pid) {
+  if (process.platform === "win32") {
+    try {
+      execSync(`taskkill /pid ${pid} /T /F`, { stdio: "ignore" });
+    } catch {
+      // already dead
+    }
+  } else {
+    try {
+      process.kill(-pid, "SIGKILL");
+    } catch {
+      // already dead
+    }
+  }
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -49,6 +65,7 @@ async function main() {
     cwd: root,
     stdio: "pipe",
     shell: true,
+    detached: process.platform !== "win32",
   });
   preview.stderr.on("data", (d) => process.stderr.write(d));
 
@@ -74,11 +91,13 @@ async function main() {
 
     await browser.close();
   } finally {
-    preview.kill();
+    killTree(preview.pid);
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
