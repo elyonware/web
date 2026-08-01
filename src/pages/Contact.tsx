@@ -75,7 +75,7 @@ export default function ContactPage() {
   return (
     <>
       <SEO
-        title="Contact Elyonware | Let's Talk"
+        title="Contact Elyonware | Schedule a Consultation"
         description="Reach out to Elyonware for project enquiries, product questions, or partnership opportunities. We respond within one business day."
         path="/contact"
       />

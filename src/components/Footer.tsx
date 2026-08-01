@@ -22,7 +22,6 @@ const COLS = [
       { label: "About",    href: "/about" },
       { label: "Contact",  href: "/contact" },
       { label: "Careers",  href: "/careers" },
-      { label: "Blog",     href: "#" },
     ],
   },
 ];
@@ -31,7 +30,7 @@ export default function Footer() {
   return (
     <>
       
-      <footer className="relative z-10 pt-16 pb-10 px-6 bg-[#02030a]/80 backdrop-blur-sm">
+      <footer className="relative z-10 pt-16 pb-10 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-14">
             {/* Brand */}
@@ -52,7 +51,7 @@ export default function Footer() {
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <a href={link.href}
-                         className="text-white text-base hover:opacity-70 transition-opacity duration-150">
+                         className="inline-block text-white text-base transition-all duration-200 hover:translate-x-1.5 hover:text-cyan-400">
                         {link.label}
                       </a>
                     </li>

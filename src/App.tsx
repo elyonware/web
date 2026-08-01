@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import AntiGravityCursor from "@/components/AntiGravityCursor";
+import SmokeyCursor from "@/components/SmokeyCursor";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Careers from "@/pages/Careers";
@@ -19,7 +19,16 @@ function ScrollToTop() {
 export default function App() {
   return (
     <>
-      <AntiGravityCursor />
+      <SmokeyCursor
+        densityDissipation={3.5}
+        velocityDissipation={2}
+        pressure={0.1}
+        curl={3}
+        splatRadius={0.2}
+        splatForce={6000}
+        colorUpdateSpeed={10}
+        enableShading
+      />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />

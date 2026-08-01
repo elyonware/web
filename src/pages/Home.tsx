@@ -1,217 +1,219 @@
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import FooterWave from "@/components/FooterWave";
 import SEO from "@/components/SEO";
+import AnimatedWave from "@/components/AnimatedWave";
+import Shuffle from "@/components/Shuffle";
+import Orb from "@/components/Orb";
+import GradientButton from "@/components/GradientButton";
+import NeonButton from "@/components/NeonButton";
 
-/* ────────────────────────── data ────────────────────────── */
+const SERVICE_PILLS = [
+  "AI Systems",
+  "Web Apps",
+  "Mobile Apps",
+  "Cloud Platforms",
+  "IoT",
+];
+
+const WHY_US = [
+  {
+    title: "Practical Delivery",
+    desc: "Clear scopes, honest timelines, and engineering decisions that keep the product moving.",
+    accent: "#0891b2",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    ),
+  },
+  {
+    title: "Full-Stack Team",
+    desc: "Software, AI, cloud, IoT, and data work handled by one connected technical team.",
+    accent: "#7c3aed",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.964 0a9 9 0 1 0-11.964 0m11.964 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+    ),
+  },
+  {
+    title: "Built to Scale",
+    desc: "Systems designed for real users, production traffic, maintainability, and long-term growth.",
+    accent: "#2563eb",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
+      />
+    ),
+  },
+  {
+    title: "Straight Communication",
+    desc: "No vague status updates. You get direct progress, clear tradeoffs, and next steps.",
+    accent: "#db2777",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
+      />
+    ),
+  },
+  {
+    title: "Support After Launch",
+    desc: "We help maintain, improve, monitor, and extend the products we ship.",
+    accent: "#059669",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.828c-.293.24-.438.613-.431.992a6.759 6.759 0 0 1 0 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.828c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"
+      />
+    ),
+  },
+];
 
 const SERVICES = [
   {
-    tag: "Development",
-    accent: "#00d4ff",
-    title: "Software & Application Development",
-    desc: "Bespoke web apps, mobile apps and enterprise systems — from MVPs to production-grade platforms built to scale.",
+    title: "Custom Websites & Apps",
+    desc: "Fast, responsive web and mobile products built around your workflow, not generic templates.",
+    accent: "#2563eb",
     icon: (
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M8.5 8.5 4 12l4.5 3.5M15.5 8.5 20 12l-4.5 3.5M14 6l-4 12"
+        d="m6.75 7.5-3 4.5 3 4.5m10.5-9 3 4.5-3 4.5m-6-13.5-3 18"
       />
     ),
   },
   {
-    tag: "Infrastructure",
-    accent: "#5865f2",
-    title: "Cloud Platforms & Data Management",
-    desc: "Architecture, deployment and management of cloud platforms and data systems that power modern businesses.",
+    title: "AI Integration",
+    desc: "AI agents, automation, computer vision, and machine learning features connected to real business processes.",
+    accent: "#7c3aed",
     icon: (
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M7 18h10a4 4 0 0 0 .5-7.97 5.5 5.5 0 0 0-10.55-1.9A4.5 4.5 0 0 0 7 18Z"
+        d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"
       />
     ),
   },
   {
-    tag: "Hardware",
-    accent: "#10b981",
+    title: "Cloud & Data Platforms",
+    desc: "Architecture, deployment, databases, APIs, dashboards, and operational infrastructure.",
+    accent: "#0891b2",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"
+      />
+    ),
+  },
+  {
     title: "IoT & Embedded Systems",
-    desc: "IoT devices, embedded systems and connected hardware — bridging physical and digital worlds for smart environments.",
-    icon: (
-      <>
-        <rect x="8" y="8" width="8" height="8" rx="1" strokeLinecap="round" strokeLinejoin="round" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2M12 3v2M15 3v2M9 19v2M12 19v2M15 19v2M3 9h2M3 12h2M3 15h2M19 9h2M19 12h2M19 15h2" />
-      </>
-    ),
-  },
-  {
-    tag: "Intelligence",
-    accent: "#a855f7",
-    title: "AI, Machine Learning & Biometrics",
-    desc: "Computer vision, facial recognition and biometric systems — turning machine intelligence into measurable outcomes.",
+    desc: "Connected hardware, sensors, embedded software, device communication, and monitoring.",
+    accent: "#059669",
     icon: (
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.24 6.24-1.41-1.41M6.17 6.17 4.76 4.76m12.48 0-1.41 1.41M6.17 17.83l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+        d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"
       />
     ),
   },
   {
-    tag: "Advisory",
-    accent: "#f59e0b",
-    title: "IT Consulting & System Integration",
-    desc: "Strategy, implementation and integration services that align technology with business goals across complex environments.",
+    title: "UI/UX Design",
+    desc: "Clean interfaces that reduce confusion and make complex workflows feel approachable.",
+    accent: "#db2777",
     icon: (
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"
       />
     ),
   },
   {
-    tag: "Platforms",
-    accent: "#f472b6",
-    title: "Digital Platforms & Marketplaces",
-    desc: "End-to-end development and operation of aggregator platforms, marketplaces and connected digital ecosystems.",
+    title: "Digital Platforms",
+    desc: "Marketplaces, portals, aggregators, and internal platforms designed for repeated daily use.",
+    accent: "#ea580c",
     icon: (
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M4 7l2-3h12l2 3M4 7h16M9 11v6M15 11v6"
+        d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016 2.993 2.993 0 0 0 2.25-1.016 3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"
       />
     ),
   },
 ];
 
-const MARQUEE_ITEMS = [
-  {
-    label: "Software & Application Development",
-    accent: "#00d4ff",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8.5 8.5 4 12l4.5 3.5M15.5 8.5 20 12l-4.5 3.5M14 6l-4 12"
-      />
-    ),
-  },
-  {
-    label: "Cloud Platforms & Data Management",
-    accent: "#5865f2",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M7 18h10a4 4 0 0 0 .5-7.97 5.5 5.5 0 0 0-10.55-1.9A4.5 4.5 0 0 0 7 18Z"
-      />
-    ),
-  },
-  {
-    label: "IoT & Embedded Systems",
-    accent: "#00d4ff",
-    icon: (
-      <>
-        <rect
-          x="8"
-          y="8"
-          width="8"
-          height="8"
-          rx="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9 3v2M12 3v2M15 3v2M9 19v2M12 19v2M15 19v2M3 9h2M3 12h2M3 15h2M19 9h2M19 12h2M19 15h2"
-        />
-      </>
-    ),
-  },
-  {
-    label: "AI, Machine Learning & Biometrics",
-    accent: "#a855f7",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.24 6.24-1.41-1.41M6.17 6.17 4.76 4.76m12.48 0-1.41 1.41M6.17 17.83l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
-      />
-    ),
-  },
-  {
-    label: "IT Consulting & System Integration",
-    accent: "#5865f2",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-      />
-    ),
-  },
-  {
-    label: "Digital Platforms & Marketplaces",
-    accent: "#a855f7",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7M4 7l2-3h12l2 3M4 7h16M9 11v6M15 11v6"
-      />
-    ),
-  },
-];
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
-const ABOUT_PILLARS = [
-  {
-    tag: "Who We Are",
-    accent: "#00d4ff",
-    title: "A full-spectrum technology company.",
-    desc: "Elyonware brings together engineers, AI researchers and hardware specialists to turn ambitious ideas into production-grade systems — from a single founding team, not a patchwork of vendors. We're small on purpose: senior-leaning, hands-on, and close to every project we take on.",
-    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-      />
-    ),
-  },
-  {
-    tag: "What We Do",
-    accent: "#5865f2",
-    title: "Design, build and operate the full stack.",
-    desc: "Software, AI, cloud infrastructure, IoT and digital platforms — we take products from first sketch to production, and keep them running long after launch. One team, every layer: you're not stitching together separate vendors for design, engineering and operations.",
-    img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.611L5 14.5"
-      />
-    ),
-  },
-  {
-    tag: "Our Commitment",
-    accent: "#a855f7",
-    title: "Honest timelines. Systems built to last.",
-    desc: "No overpromising, no half-finished handoffs. We commit to transparent communication and architecture that stays reliable well past the first release — built with international standards from day one, so it holds up as you scale.",
-    img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 12.75 11.25 15 15 9.75m6 3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-      />
-    ),
-  },
-];
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -10% 0px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
-/* ────────────────────────── page ────────────────────────── */
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
+      } ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function FeatureIcon({
+  children,
+  className = "h-6 w-6",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      {children}
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
@@ -221,236 +223,266 @@ export default function Home() {
         description="Elyonware designs and builds software, AI, IoT and cloud solutions for businesses creating modern digital products."
         path="/"
       />
-      <main className="relative min-h-screen overflow-hidden bg-[#04060f] pt-24">
+      <main className="min-h-screen overflow-x-hidden ">
         <Header />
-        <Hero />
 
-        {/* ── Services ── */}
-        <section id="services" className="relative z-10 py-16 sm:py-24 lg:py-32 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
-            
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {SERVICES.map((s) => (
-                <div
-                  key={s.title}
-                  className="group relative z-10 overflow-hidden rounded-3xl border border-white/[0.08] hover:border-white/[0.18] backdrop-blur-md transition-all duration-300 p-8 flex flex-col gap-5"
-                  style={{
-                    background: `linear-gradient(160deg, ${s.accent}1c 0%, rgba(255,255,255,0.03) 55%)`,
-                    boxShadow: `0 4px 40px ${s.accent}22`,
-                  }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span
-                      className="flex items-center justify-center w-14 h-14 rounded-2xl flex-shrink-0"
-                      style={{
-                        color: s.accent,
-                        background: `${s.accent}14`,
-                        border: `1px solid ${s.accent}40`,
-                        boxShadow: `0 0 20px ${s.accent}30`,
-                      }}
-                    >
-                      <svg
-                        className="w-7 h-7"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                      >
-                        {s.icon}
-                      </svg>
-                    </span>
-                    <span
-                      className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.18em] border"
-                      style={{
-                        color: s.accent,
-                        borderColor: `${s.accent}50`,
-                        background: `${s.accent}18`,
-                      }}
-                    >
-                      {s.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="font-black text-xl md:text-2xl leading-tight text-white">
-                    {s.title}
-                  </h3>
-                  <p className="text-white/85 text-base leading-relaxed">
-                    {s.desc}
-                  </p>
-
-                  {/* accent glow line */}
-                  <div
-                    className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
-                    style={{
-                      background: `linear-gradient(90deg, ${s.accent}cc, transparent)`,
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Who we are / what we do / commitments — each its own section ── */}
-        {ABOUT_PILLARS.map((p, i) => (
-          <section
-            key={p.tag}
-            id={p.tag.toLowerCase().replace(/\s+/g, "-")}
-            className="relative z-10 min-h-screen flex items-center py-16 px-4 sm:px-6"
+        <section className="relative flex min-h-screen items-center overflow-hidden  px-4 pt-20 text-white sm:px-6">
+          <div
+            className="absolute inset-0 overflow-hidden"
+            style={{ width: "100%", height: "100%" }}
           >
-            <div
-              className={`w-full max-w-7xl mx-auto flex flex-col ${i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-10 lg:gap-16`}
-            >
-              {/* Image */}
-              <div
-                className="relative w-full lg:w-1/2 h-64 sm:h-80 lg:h-96 rounded-3xl overflow-hidden border border-white/[0.08] flex-shrink-0"
-                style={{ boxShadow: `0 4px 50px ${p.accent}22` }}
-              >
-                <img
-                  src={p.img}
-                  alt={p.tag}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(to top, ${p.accent}30, transparent 60%)`,
-                  }}
-                />
-                <span
-                  className="absolute top-5 left-5 flex items-center justify-center w-12 h-12 rounded-xl backdrop-blur-sm"
-                  style={{
-                    color: p.accent,
-                    background: `${p.accent}22`,
-                    border: `1px solid ${p.accent}50`,
-                  }}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                  >
-                    {p.icon}
-                  </svg>
-                </span>
-              </div>
+            <Orb
+              hoverIntensity={2}
+              rotateOnHover
+              hue={0}
+              forceHoverState={false}
+              backgroundColor="#000000"
+            />
+          </div>
 
-              {/* Text */}
-              <div className="w-full lg:w-1/2 text-center lg:text-left">
-                <span
-                  className="inline-block text-xs font-bold uppercase tracking-[0.2em] mb-4"
-                  style={{ color: p.accent }}
-                >
-                  {p.tag}
-                </span>
-                <h3 className="font-black text-2xl md:text-3xl leading-tight text-white mb-4">
-                  {p.title}
-                </h3>
-                <p className="text-white/85 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  {p.desc}
-                </p>
-              </div>
-            </div>
-          </section>
-        ))}
-
-        {/* ── Contact / CTA ── */}
-        <section id="contact" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="relative z-10 overflow-hidden border border-[#00d4ff]/30 bg-black/30 backdrop-blur-sm p-12 md:p-20 text-center">
-              {/* Corner accents */}
-              <span className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#00d4ff]/80 hud-corner" />
-              <span className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#00d4ff]/80 hud-corner" />
-              <span className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#00d4ff]/80 hud-corner" />
-              <span className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#00d4ff]/80 hud-corner" />
-              {/* Top edge glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/70 to-transparent" />
-              {/* Inner glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00d4ff]/5 via-transparent to-[#a855f7]/5 pointer-events-none" />
-
-              <div className="relative">
-                <span className="inline-flex items-center gap-2 px-3 py-1 border border-[#00d4ff]/40 bg-[#00d4ff]/5 text-[#00d4ff] text-xs font-bold uppercase tracking-[0.2em] mb-5">
+          <div className="pointer-events-none relative mx-auto flex max-w-5xl flex-col items-center gap-12">
+            <div className="text-center">
+              <Shuffle
+                tag="h1"
+                text="Build the future. Define what's next."
+                shuffleDirection="right"
+                duration={0.35}
+                animationMode="evenodd"
+                shuffleTimes={1}
+                ease="power3.out"
+                stagger={0.03}
+                threshold={0.1}
+                triggerOnce={true}
+                triggerOnHover
+                respectReducedMotion={true}
+                loop={false}
+                loopDelay={0}
+                textAlign="center"
+                className="normal-case mx-auto max-w-4xl text-4xl font-black leading-[1.05] tracking-normal text-white sm:text-5xl sm:leading-[0.98] lg:text-7xl"
+              />
+              <div className="mb-7 mt-12 flex flex-wrap justify-center gap-3">
+                {SERVICE_PILLS.map((pill) => (
                   <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]"
-                    style={{
-                      animation: "antenna-glow 1.5s ease-in-out infinite",
-                    }}
-                  />
-                  Establish Connection
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-                  Ready to build at{" "}
-                  <span className="bg-gradient-to-r from-[#00d4ff] to-[#a855f7] bg-clip-text text-transparent">
-                    global scale?
-                  </span>
-                </h2>
-                <p className="text-white text-lg max-w-xl mx-auto mb-10">
-                  Talk to a solutions engineer today. No sales scripts — just an
-                  honest conversation about what you&apos;re building.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-                  <a
-                    href="mailto:contact@elyonware.com"
-                    className="px-8 py-4 border border-white/20 hover:border-white/40
-                               bg-white/5 hover:bg-white/10 text-white
-                               font-semibold uppercase tracking-wider transition-all duration-200"
+                    key={pill}
+                    className="rounded-full border border-white bg-white/10 px-2.5 py-1 text-xs font-bold text-white/90 backdrop-blur sm:px-4 sm:py-2 sm:text-sm"
                   >
-                    CONTACT US
-                  </a>
-                </div>
+                    {pill}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <GradientButton
+                  size="lg"
+                  className="pointer-events-auto font-black uppercase tracking-wide cursor-pointer"
+                  onClick={() => {
+                    window.location.href = "mailto:contact@elyonware.com";
+                  }}
+                >
+                  Start a Project
+                </GradientButton>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Wave + decorative scene */}
-        <div className="relative">
-          <FooterWave />
-          <img
-            src="/moon.png"
-            alt=""
-            className="absolute pointer-events-none drop-shadow-xl"
-            style={{
-              bottom: 100,
-              left: "calc(50% - 260px)",
-              width: 90,
-              animation: "robot-float 6s ease-in-out infinite",
-            }}
-          />
-          <img
-            src="/cloud1.png"
-            alt=""
-            className="absolute pointer-events-none opacity-90"
-            style={{
-              bottom: 120,
-              left: "calc(50% + 120px)",
-              width: 110,
-              animation: "robot-float 7s ease-in-out infinite",
-              animationDelay: "1s",
-            }}
-          />
-          <img
-            src="/cloud2.png"
-            alt=""
-            className="absolute pointer-events-none opacity-80"
-            style={{
-              bottom: 90,
-              left: "calc(50% - 320px)",
-              width: 90,
-              animation: "robot-float 5.5s ease-in-out infinite",
-              animationDelay: "2s",
-            }}
-          />
-          <img
-            src="/elyon-sits.png"
-            alt=""
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-48 w-auto object-contain drop-shadow-2xl pointer-events-none"
-          />
-        </div>
+        <section id="about" className="px-3 py-8">
+          <Reveal className="grid overflow-hidden rounded-[2rem] bg-slate-50 text-slate-950 sm:rounded-[2.5rem] lg:grid-cols-2">
+            <div className="relative order-2 min-h-[380px] overflow-hidden rounded-[2rem] lg:order-1 lg:min-h-[620px] lg:rounded-none lg:[border-top-right-radius:45%_100%] lg:[border-bottom-right-radius:45%_100%]">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Elyonware team planning a digital product"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-950/60 via-blue-800/15 to-transparent" />
+              <div className="absolute bottom-6 left-6 h-28 w-28 overflow-hidden rounded-2xl shadow-xl ring-4 ring-white sm:h-36 sm:w-36">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80"
+                  alt="Engineers reviewing a product build"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="order-1 flex flex-col justify-center px-6 py-16 sm:px-10 sm:py-20 lg:order-2 lg:px-16 lg:py-0">
+              <p className="mb-4 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-cyan-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-600" />
+                About Elyonware
+              </p>
+              <h2 className="max-w-3xl text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
+                A technology team for products that need more than a landing
+                page.
+              </h2>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                We work across software, AI, cloud infrastructure, IoT, and
+                digital platforms. The goal is simple: turn complex requirements
+                into clean systems that users can actually rely on.
+              </p>
+              <div className="mt-10 grid grid-cols-3 gap-6 border-t border-slate-200 pt-8">
+                {[
+                  { value: "5+", label: "Core Domains" },
+                  { value: "100%", label: "In-House Team" },
+                  { value: "24/7", label: "Post-Launch Support" },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <p className="text-xl font-black text-slate-950 sm:text-3xl lg:text-4xl">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-slate-500">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <section className="px-3 py-8">
+          <Reveal className="relative overflow-hidden rounded-[2rem] bg-white text-slate-950 px-4 py-20 sm:rounded-[2.5rem] sm:px-6 lg:py-24">
+            <div className="pointer-events-none absolute -bottom-48 -right-48 h-[42rem] w-[42rem] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(124,58,237,0.22),rgba(37,99,235,0.18),rgba(8,145,178,0.16),rgba(219,39,119,0.14),rgba(124,58,237,0.22))] blur-[100px]" />
+            <div className="relative mx-auto max-w-7xl">
+              <div className="mb-14 max-w-3xl">
+                <p className="mb-3 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-violet-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-violet-600" />
+                  Why Choose Us
+                </p>
+                <h2 className="text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
+                  Built for clarity, speed, and ownership.
+                </h2>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {WHY_US.map((item, index) => (
+                  <Reveal key={item.title} delay={index * 100}>
+                    <div
+                      className="group/card relative flex min-h-[220px] flex-col items-start justify-center overflow-hidden rounded-[1.75rem] p-8 text-white shadow-xl ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-2 sm:p-10"
+                      style={{
+                        background: `linear-gradient(135deg, color-mix(in srgb, ${item.accent} 85%, white), ${item.accent} 45%, color-mix(in srgb, ${item.accent} 75%, black))`,
+                        boxShadow: `0 20px 45px -18px ${item.accent}99`,
+                      }}
+                    >
+                      <div
+                        className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-3xl transition-opacity duration-300 group-hover/card:opacity-70"
+                        style={{ background: "rgba(255,255,255,0.35)" }}
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.15),transparent_40%)]" />
+                      <span className="pointer-events-none absolute -top-4 right-6 text-5xl font-black text-white opacity-20 transition-transform duration-300 group-hover/card:scale-110 sm:text-7xl lg:text-8xl">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 shadow-inner ring-1 ring-white/25 backdrop-blur transition-transform duration-300 group-hover/card:scale-110">
+                        <FeatureIcon className="h-6 w-6 text-white">
+                          {item.icon}
+                        </FeatureIcon>
+                      </div>
+                      <h3 className="relative text-xl font-black sm:text-2xl lg:text-3xl">
+                        {item.title}
+                      </h3>
+                      <p className="relative mt-3 max-w-xl text-sm leading-6 text-white/85 sm:text-base">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <section id="services" className="px-3 py-8">
+          <Reveal className="relative overflow-hidden rounded-[2rem] bg-slate-50 text-slate-950 px-4 py-20 sm:rounded-[2.5rem] sm:px-6 lg:py-28">
+            <div className="pointer-events-none absolute -bottom-48 -right-48 h-[42rem] w-[42rem] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(37,99,235,0.20),rgba(5,150,105,0.16),rgba(234,88,12,0.14),rgba(219,39,119,0.16),rgba(37,99,235,0.20))] blur-[100px]" />
+            <div className="relative mx-auto max-w-7xl">
+              <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+                <div className="max-w-3xl">
+                  <p className="mb-3 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-violet-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-violet-600" />
+                    Our Services
+                  </p>
+                  <h2 className="text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
+                    Everything needed to move from idea to working system.
+                  </h2>
+                </div>
+                <NeonButton
+                  href="mailto:contact@elyonware.com"
+                  color="#00b8d4"
+                  className="w-fit text-sm"
+                >
+                  Discuss your project
+                </NeonButton>
+              </div>
+              <div className="grid gap-6 md:grid-cols-3">
+                {SERVICES.map((service) => (
+                  <div
+                    key={service.title}
+                    className="group relative overflow-hidden rounded-[1.6rem] p-[1.5px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
+                    style={{ background: `${service.accent}55` }}
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-[-75%] animate-[spin-border_3s_linear_infinite] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{
+                        background: `conic-gradient(from 0deg, transparent 0%, transparent 82%, #f8fafc 90%, #ffffff 94%, ${service.accent} 98%, transparent 100%)`,
+                      }}
+                    />
+                    <div className="relative overflow-hidden rounded-[calc(1.6rem-1.5px)] bg-white p-7">
+                      <div
+                        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-20"
+                        style={{ background: service.accent }}
+                      />
+                      <div
+                        className="relative mb-7 flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
+                        style={{
+                          background: `${service.accent}18`,
+                          color: service.accent,
+                        }}
+                      >
+                        <FeatureIcon>{service.icon}</FeatureIcon>
+                      </div>
+                      <h3 className="relative text-lg font-black sm:text-xl">
+                        {service.title}
+                      </h3>
+                      <p className="relative mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+                        {service.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <section id="contact" className="flex min-h-screen items-center p-1">
+          <Reveal className="relative flex h-[calc(100vh-0.5rem)] w-full items-center justify-center overflow-hidden">
+            <AnimatedWave
+              colorFrom="#6366f1"
+              colorTo="#06b6d4"
+              amplitude={22}
+              opacity={0.55}
+              cameraY={140}
+              cameraZ={230}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_28%_50%,rgba(88,110,255,0.14),transparent_55%)]" />
+            <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-10">
+              <h2 className="text-3xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl sm:leading-[1.02] lg:text-6xl">
+                Turn Vision Into Reality
+                <span className="ml-1 inline-block h-[0.85em] w-[3px] translate-y-1 cursor-blink bg-gradient-to-b from-cyan-300 via-fuchsia-300 to-amber-300 align-middle" />
+              </h2>
+              <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
+                Tell us what you are trying to build. We will help turn it into
+                a practical plan.
+              </p>
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <GradientButton
+                  size="lg"
+                  className="font-black uppercase tracking-wide"
+                  onClick={() => {
+                    window.location.href = "mailto:contact@elyonware.com";
+                  }}
+                >
+                  Schedule a Consultation
+                </GradientButton>
+              </div>
+            </div>
+          </Reveal>
+        </section>
 
         <Footer />
       </main>

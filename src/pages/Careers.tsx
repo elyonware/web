@@ -169,7 +169,13 @@ export default function CareersPage() {
         path="/careers"
       />
       <Header />
-      <main className="min-h-screen bg-[#04060f] pt-24">
+      <main
+        className="min-h-screen pt-24"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(180,230,255,0.22) 0%, transparent 50%), radial-gradient(ellipse at 0% 30%, rgba(0,150,255,0.18) 0%, transparent 50%), radial-gradient(ellipse at 100% 20%, rgba(100,200,255,0.18) 0%, transparent 50%), radial-gradient(ellipse at 30% 80%, rgba(50,100,220,0.12) 0%, transparent 50%), #03080f",
+        }}
+      >
         {/* ── Hero ── */}
         <section className="px-4 sm:px-6 md:px-18 py-20 text-center flex flex-col items-center">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.05] max-w-3xl">
