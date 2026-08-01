@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, lazy, Suspense, type ReactNode } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import AnimatedWave from "@/components/AnimatedWave";
 import Shuffle from "@/components/Shuffle";
-import Orb from "@/components/Orb";
 import GradientButton from "@/components/GradientButton";
 import NeonButton from "@/components/NeonButton";
+
+// three.js / ogl are heavy — split them out of the main bundle since these
+// are decorative background effects, not critical-path content.
+const AnimatedWave = lazy(() => import("@/components/AnimatedWave"));
+const Orb = lazy(() => import("@/components/Orb"));
 
 const SERVICE_PILLS = [
   "AI Systems",
@@ -231,13 +234,15 @@ export default function Home() {
             className="absolute inset-0 overflow-hidden"
             style={{ width: "100%", height: "100%" }}
           >
-            <Orb
-              hoverIntensity={2}
-              rotateOnHover
-              hue={0}
-              forceHoverState={false}
-              backgroundColor="#000000"
-            />
+            <Suspense fallback={null}>
+              <Orb
+                hoverIntensity={2}
+                rotateOnHover
+                hue={0}
+                forceHoverState={false}
+                backgroundColor="#000000"
+              />
+            </Suspense>
           </div>
 
           <div className="pointer-events-none relative mx-auto flex max-w-5xl flex-col items-center gap-12">
@@ -451,14 +456,16 @@ export default function Home() {
 
         <section id="contact" className="flex min-h-screen items-center p-1">
           <Reveal className="relative flex h-[calc(100vh-0.5rem)] w-full items-center justify-center overflow-hidden">
-            <AnimatedWave
-              colorFrom="#6366f1"
-              colorTo="#06b6d4"
-              amplitude={22}
-              opacity={0.55}
-              cameraY={140}
-              cameraZ={230}
-            />
+            <Suspense fallback={null}>
+              <AnimatedWave
+                colorFrom="#6366f1"
+                colorTo="#06b6d4"
+                amplitude={22}
+                opacity={0.55}
+                cameraY={140}
+                cameraZ={230}
+              />
+            </Suspense>
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_28%_50%,rgba(88,110,255,0.14),transparent_55%)]" />
             <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-10">
               <h2 className="text-3xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl sm:leading-[1.02] lg:text-6xl">
