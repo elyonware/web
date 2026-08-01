@@ -87,6 +87,13 @@ async function main() {
       await mkdir(outDir, { recursive: true });
       await writeFile(path.join(outDir, "index.html"), html, "utf8");
       console.log(`Prerendered ${routePath} -> ${path.relative(root, path.join(outDir, "index.html"))}`);
+
+      if (routePath === "/") {
+        // SPA fallback for static hosts (e.g. GitHub Pages) — serve the
+        // prerendered homepage for unmatched deep links; client-side
+        // routing takes over once the bundle loads.
+        await writeFile(path.join(distDir, "404.html"), html, "utf8");
+      }
     }
 
     await browser.close();

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 4000",
-    "build": "tsc -b && vite build && node scripts/prerender.mjs && cp dist/index.html dist/404.html",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint ."
   },
