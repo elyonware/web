@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState, lazy, Suspense, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  lazy,
+  Suspense,
+  type ReactNode,
+} from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -247,6 +254,19 @@ export default function Home() {
 
           <div className="pointer-events-none relative mx-auto flex max-w-5xl flex-col items-center gap-12">
             <div className="text-center">
+              <div className="mb-6 flex items-center justify-center gap-2">
+                <img
+                  src="/elyonware-logo.png"
+                  alt=""
+                  className="h-8 w-8 sm:h-10 sm:w-10"
+                />
+                <span
+                  className="text-lg font-medium tracking-wide text-white/80 sm:text-xl"
+                  style={{ fontFamily: "'Manrope', sans-serif" }}
+                >
+                  Elyonware
+                </span>
+              </div>
               <Shuffle
                 tag="h1"
                 text="Build the future. Define what's next."
@@ -290,7 +310,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="about" className="px-3 py-8">
+        <section id="about" className="px-3 py-4">
           <Reveal className="grid overflow-hidden rounded-[2rem] bg-slate-50 text-slate-950 sm:rounded-[2.5rem] lg:grid-cols-2">
             <div className="relative order-2 min-h-[380px] overflow-hidden rounded-[2rem] lg:order-1 lg:min-h-[620px] lg:rounded-none lg:[border-top-right-radius:45%_100%] lg:[border-bottom-right-radius:45%_100%]">
               <img
@@ -341,7 +361,70 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <section className="px-3 py-8">
+        <section id="eazymo" className="px-3 py-4">
+          <Reveal className="relative overflow-hidden rounded-[2rem] text-white sm:rounded-[2.5rem]">
+            <div
+              className="animate-gradient-shift relative bg-[length:300%_300%] px-4 pb-14 pt-12 sm:px-6 sm:py-16 lg:py-20"
+              style={{
+                backgroundImage:
+                  "linear-gradient(115deg, #022c22 0%, #059669 13%, #0d9488 24%, #1d4ed8 40%, #1e1b4b 50%, #7f1d1d 58%, #dc2626 66%, #7f1d1d 74%, #1e1b4b 82%, #059669 93%, #022c22 100%)",
+              }}
+            >
+              <div
+                className="animate-blob-float pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-emerald-400/25 blur-[100px]"
+                style={{ animationDelay: "0s" }}
+              />
+              <div
+                className="animate-blob-float pointer-events-none absolute -bottom-40 -right-40 h-[30rem] w-[30rem] rounded-full bg-teal-300/20 blur-[120px]"
+                style={{ animationDelay: "-4s" }}
+              />
+              <div
+                className="animate-blob-float pointer-events-none absolute right-1/4 top-1/3 h-64 w-64 rounded-full bg-lime-300/15 blur-[90px]"
+                style={{ animationDelay: "-8s" }}
+              />
+              <div
+                className="animate-blob-float pointer-events-none absolute bottom-1/4 left-1/4 h-56 w-56 rounded-full bg-cyan-300/15 blur-[90px]"
+                style={{ animationDelay: "-2s" }}
+              />
+              <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+                <div className="relative overflow-hidden rounded-full p-[1.5px]">
+                  <div
+                    className="pointer-events-none absolute inset-[-150%] animate-[spin-border_2.5s_linear_infinite]"
+                    style={{
+                      background:
+                        "conic-gradient(from 0deg, #3b82f6, #ef4444, #facc15, #3b82f6)",
+                    }}
+                  />
+                  <span className="relative inline-flex items-center gap-2 rounded-full bg-[#04150f] px-4 py-1.5 text-xs font-black uppercase tracking-[0.2em] text-emerald-200">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
+                    </span>
+                    Launching Soon
+                  </span>
+                </div>
+                <h2 className="font-heading text-3xl font-black leading-tight sm:text-5xl">
+                  Introducing Eazymo
+                </h2>
+                <p className="max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
+                  Our next in-house product — built the same way we build for
+                  clients: practical, fast, and made to solve a real everyday
+                  problem. Details drop soon.
+                </p>
+                <NeonButton
+                  href="mailto:contact@elyonware.com?subject=Notify me about Eazymo"
+                  color="#fbbf24"
+                  glowColor="#fbbf24"
+                  className="w-fit text-sm"
+                >
+                  Get notified
+                </NeonButton>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <section className="px-3 py-4">
           <Reveal className="relative overflow-hidden rounded-[2rem] bg-white text-slate-950 px-4 pt-12 pb-20 sm:rounded-[2.5rem] sm:px-6 sm:py-20 lg:py-24">
             <div
               className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_0%,#000_40%,transparent_100%)]"
@@ -353,12 +436,12 @@ export default function Home() {
             />
             <div className="pointer-events-none absolute -bottom-48 -right-48 h-[42rem] w-[42rem] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(124,58,237,0.22),rgba(37,99,235,0.18),rgba(8,145,178,0.16),rgba(219,39,119,0.14),rgba(124,58,237,0.22))] blur-[100px]" />
             <div className="relative mx-auto max-w-7xl">
-              <div className="mb-14 max-w-3xl">
+              <div className="mb-14">
                 <p className="mb-3 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-violet-700">
                   <span className="h-1.5 w-1.5 rounded-full bg-violet-600" />
                   Why Choose Us
                 </p>
-                <h2 className="text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
+                <h2 className="font-heading text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
                   Built for clarity, speed, and ownership.
                 </h2>
               </div>
@@ -385,7 +468,7 @@ export default function Home() {
                           {item.icon}
                         </FeatureIcon>
                       </div>
-                      <h3 className="relative text-xl font-black sm:text-2xl lg:text-3xl">
+                      <h3 className="font-heading relative text-xl font-black sm:text-2xl lg:text-3xl">
                         {item.title}
                       </h3>
                       <p className="relative mt-3 max-w-xl text-sm leading-6 text-white/85 sm:text-base">
@@ -399,7 +482,7 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <section id="services" className="px-3 py-8">
+        <section id="services" className="px-3 py-4">
           <Reveal className="relative overflow-hidden rounded-[2rem] bg-slate-50 text-slate-950 px-4 pt-12 pb-20 sm:rounded-[2.5rem] sm:px-6 sm:py-20 lg:py-28">
             <div className="pointer-events-none absolute -bottom-48 -right-48 h-[42rem] w-[42rem] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(37,99,235,0.20),rgba(5,150,105,0.16),rgba(234,88,12,0.14),rgba(219,39,119,0.16),rgba(37,99,235,0.20))] blur-[100px]" />
             <div className="relative mx-auto max-w-7xl">
@@ -409,7 +492,7 @@ export default function Home() {
                     <span className="h-1.5 w-1.5 rounded-full bg-violet-600" />
                     Our Services
                   </p>
-                  <h2 className="text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
+                  <h2 className="font-heading text-2xl font-black leading-tight sm:text-4xl lg:text-5xl">
                     Everything needed to move from idea to working system.
                   </h2>
                 </div>
@@ -448,7 +531,7 @@ export default function Home() {
                       >
                         <FeatureIcon>{service.icon}</FeatureIcon>
                       </div>
-                      <h3 className="relative text-lg font-black sm:text-xl">
+                      <h3 className="font-heading relative text-lg font-black sm:text-xl">
                         {service.title}
                       </h3>
                       <p className="relative mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">

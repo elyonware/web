@@ -180,7 +180,7 @@ export default function AboutPage() {
               About Elyonware
             </p>
             <h1
-              className="font-black tracking-tight leading-[1.05] mb-6 text-white"
+              className="font-heading font-black tracking-tight leading-[1.05] mb-6 text-white"
               style={{ fontSize: "clamp(2.6rem,7vw,5rem)" }}
             >
               We build technology that{" "}
@@ -216,7 +216,7 @@ export default function AboutPage() {
                 />
               </div>
               <div className="flex flex-col justify-center px-8 py-10 lg:px-12 lg:py-14">
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
+                <h2 className="font-heading text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
                   {s.title}
                 </h2>
                 <p className="text-white/85 text-base leading-relaxed">
@@ -233,7 +233,7 @@ export default function AboutPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-indigo-400 mb-3">
               What Drives Us
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight">
               Purpose-built for the long game.
             </h2>
           </div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="p-8 sm:p-10">
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="font-heading text-xl font-bold text-white mb-3">
                   Our Mission
                 </h3>
                 <p className="text-white/80 leading-relaxed">
@@ -311,7 +311,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="p-8 sm:p-10">
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="font-heading text-xl font-bold text-white mb-3">
                   Our Vision
                 </h3>
                 <p className="text-white/80 leading-relaxed">
@@ -331,7 +331,7 @@ export default function AboutPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-indigo-400 mb-4">
               What We Stand For
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight">
               The principles that guide everything we do.
             </h2>
           </div>
@@ -347,7 +347,7 @@ export default function AboutPage() {
                 >
                   {v.icon}
                 </div>
-                <h3 className="font-bold text-white mb-2 text-base">
+                <h3 className="font-heading font-bold text-white mb-2 text-base">
                   {v.title}
                 </h3>
                 <p className="text-sm text-white/75 leading-relaxed">
@@ -361,7 +361,7 @@ export default function AboutPage() {
         {/* ── CTA ── */}
         <section className="py-20 px-4 sm:px-6 border-t border-white/[0.06]">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-5">
               Ready to build something{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
                 great together?

@@ -3,6 +3,7 @@
 @theme inline {
   --color-background: #04060f;
   --color-foreground: #dbdee1;
+  --font-heading: "Manrope", sans-serif;
 }
 
 html {
@@ -54,3 +55,16 @@ body {
   50%      { opacity: 0; }
 }
 .cursor-blink { animation: blink-cursor 1s step-end infinite; }
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.animate-gradient-shift { animation: gradient-shift 10s ease-in-out infinite; }
+
+@keyframes blob-float {
+  0%, 100%  { transform: translate(0, 0) scale(1); }
+  33%        { transform: translate(30px, -25px) scale(1.12); }
+  66%        { transform: translate(-25px, 20px) scale(0.92); }
+}
+.animate-blob-float { animation: blob-float 13s ease-in-out infinite; }
