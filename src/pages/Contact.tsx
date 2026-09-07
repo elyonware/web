@@ -168,6 +168,7 @@ export default function ContactPage() {
               {ADDRESSES.map((a) => (
                 <div
                   key={a.label}
+                  data-no-cursor-fx
                   className="relative z-10 flex flex-col rounded-2xl border border-white/[0.1] bg-[#12142e] overflow-hidden"
                 >
                   <div className="flex items-start gap-4 p-6">
@@ -213,7 +214,10 @@ export default function ContactPage() {
 
             <div className="grid sm:grid-cols-2 gap-4 mt-4">
               {/* Response time */}
-              <div className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
+              <div
+                data-no-cursor-fx
+                className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20"
+              >
                 <h3 className="font-bold text-lg text-white mb-3">Response time</h3>
                 <p className="text-base text-white leading-relaxed mb-4">
                   We aim to respond to every enquiry within{" "}
@@ -227,7 +231,10 @@ export default function ContactPage() {
               </div>
 
               {/* Quick links */}
-              <div className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
+              <div
+                data-no-cursor-fx
+                className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]"
+              >
                 <h3 className="font-bold text-lg text-white mb-4">Explore first</h3>
                 <div className="flex flex-col gap-2">
                   {QUICK_LINKS.map((l) => (

@@ -150,6 +150,7 @@ export default function CareersPage() {
           {CULTURE_SECTIONS.map((s) => (
             <div
               key={s.title}
+              data-no-cursor-fx
               className={`relative z-10 flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-[#0d0f1a]`}
             >
               {/* Image */}
@@ -276,6 +277,7 @@ function JobCard({ job }: { job: (typeof OPENINGS)[0] }) {
   const cardBg = CARD_BG[job.accent] ?? { base: "#111214", light: "#181a1f" };
   return (
     <details
+      data-no-cursor-fx
       className="group relative z-10 rounded-3xl overflow-hidden transition-all duration-200"
       style={{ border: `1px solid ${job.accent}22`, background: cardBg.base }}
     >

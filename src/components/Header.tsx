@@ -618,6 +618,7 @@ export default function Header() {
                     {PRODUCTS.map((p) => (
                       <div
                         key={p.id}
+                        data-no-cursor-fx
                         className={`group flex flex-col gap-5 p-7 rounded-3xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30 ${p.border} ${
                           ["hilabi", "erp", "exam-portal"].includes(p.id)
                             ? `${p.color} hover:brightness-110`
