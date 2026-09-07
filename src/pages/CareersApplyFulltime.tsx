@@ -7,8 +7,6 @@ import SEO from "@/components/SEO";
 const ROLES = [
   { id: "ai-ml-engineer-senior", label: "Senior AI/ML Engineer", dept: "Artificial Intelligence" },
   { id: "ai-ml-engineer-mid",    label: "AI/ML Engineer",         dept: "Artificial Intelligence" },
-  { id: "fullstack-engineer",    label: "Full-Stack Software Engineer", dept: "Engineering" },
-  { id: "iot-engineer",          label: "IoT & Embedded Systems Engineer", dept: "Hardware & IoT" },
 ];
 
 const STEPS = [

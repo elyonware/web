@@ -3,8 +3,8 @@ const COLS = [
     title: "Products",
     links: [
       { label: "Hilabi", href: "#" },
-      { label: "Assessment System", href: "#" },
-      { label: "Scholar MS", href: "#" },
+      { label: "ERP", href: "#" },
+      { label: "Examination Portal", href: "#" },
     ],
   },
   {
@@ -68,7 +68,7 @@ export default function Footer() {
 
           <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-white text-sm">
-              © 2026 Elyonware Technologies LLP. All rights reserved.
+              © 2026 Elyonware Technologies LLP. All rights reserved. LLPIN: ACX-1617
             </p>
           </div>
         </div>

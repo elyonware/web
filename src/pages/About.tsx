@@ -7,7 +7,7 @@ const ABOUT_SECTIONS = [
   {
     title:
       "Born from a belief that great technology should be within everyone's reach.",
-    body: "Elyonware was founded in 2026 with one conviction: the gap between ambitious ideas and working technology is a problem we can solve. Too many organisations — especially in emerging markets — are held back not by lack of vision, but by lack of access to the right technical partner. We set out to change that.",
+    body: "Elyonware was founded in 2026 with one conviction: the gap between ambitious ideas and working technology is a problem we can solve. Too many organisations — especially in emerging markets — are held back not by lack of vision, but by lack of access to the right technical partner. We set out to change that. Elyonware is the trading name of Elyonware Technologies LLP (LLPIN: ACX-1617), registered in Meghalaya, India.",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80",
     alt: "Team gathered around a laptop brainstorming ideas",
     flip: false,
