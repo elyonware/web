@@ -163,53 +163,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 mt-10">
-              {/* Response time */}
-              <div className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
-                <h3 className="font-bold text-lg text-white mb-3">Response time</h3>
-                <p className="text-base text-white leading-relaxed mb-4">
-                  We aim to respond to every enquiry within{" "}
-                  <span className="text-indigo-300 font-semibold">24–48 hours</span>{" "}
-                  on business days.
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-base text-white">Currently accepting new projects</span>
-                </div>
-              </div>
-
-              {/* Quick links */}
-              <div className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
-                <h3 className="font-bold text-lg text-white mb-4">Explore first</h3>
-                <div className="flex flex-col gap-2">
-                  {QUICK_LINKS.map((l) => (
-                    <Link
-                      key={l.label}
-                      to={l.href}
-                      className="flex items-center justify-between py-2 border-b border-white/[0.06] last:border-0 text-base text-white hover:text-indigo-300 transition-colors group"
-                    >
-                      {l.label}
-                      <svg
-                        className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
             {/* Office addresses */}
-            <div className="grid sm:grid-cols-2 gap-4 mt-4">
+            <div className="grid sm:grid-cols-2 gap-4 mt-10">
               {ADDRESSES.map((a) => (
                 <div
                   key={a.label}
@@ -254,6 +209,51 @@ export default function ContactPage() {
                   />
                 </div>
               ))}
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 mt-4">
+              {/* Response time */}
+              <div className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
+                <h3 className="font-bold text-lg text-white mb-3">Response time</h3>
+                <p className="text-base text-white leading-relaxed mb-4">
+                  We aim to respond to every enquiry within{" "}
+                  <span className="text-indigo-300 font-semibold">24–48 hours</span>{" "}
+                  on business days.
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-base text-white">Currently accepting new projects</span>
+                </div>
+              </div>
+
+              {/* Quick links */}
+              <div className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
+                <h3 className="font-bold text-lg text-white mb-4">Explore first</h3>
+                <div className="flex flex-col gap-2">
+                  {QUICK_LINKS.map((l) => (
+                    <Link
+                      key={l.label}
+                      to={l.href}
+                      className="flex items-center justify-between py-2 border-b border-white/[0.06] last:border-0 text-base text-white hover:text-indigo-300 transition-colors group"
+                    >
+                      {l.label}
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
