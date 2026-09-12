@@ -7,7 +7,7 @@ const ABOUT_SECTIONS = [
   {
     title:
       "Born from a belief that great technology should be within everyone's reach.",
-    body: "Elyonware was founded in 2026 with one conviction: the gap between ambitious ideas and working technology is a problem we can solve. Too many organisations — especially in emerging markets — are held back not by lack of vision, but by lack of access to the right technical partner. We set out to change that.",
+    body: "Elyonware was founded in 2026 with one conviction: the gap between ambitious ideas and working technology is a problem we can solve. Too many organisations — especially in emerging markets — are held back not by lack of vision, but by lack of access to the right technical partner. We set out to change that. Elyonware is the trading name of Elyonware Technologies LLP (LLPIN: ACX-1617), registered in Meghalaya, India.",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80",
     alt: "Team gathered around a laptop brainstorming ideas",
     flip: false,
@@ -206,6 +206,7 @@ export default function AboutPage() {
           {ABOUT_SECTIONS.map((s) => (
             <div
               key={s.title}
+              data-no-cursor-fx
               className={`relative z-10 flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-[#0d0f1a]`}
             >
               <div className="relative lg:w-[52%] h-72 lg:h-auto flex-shrink-0">
@@ -239,7 +240,7 @@ export default function AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Mission */}
-            <div className="relative z-10 rounded-3xl overflow-hidden border border-indigo-500/20 bg-[#141a3d]">
+            <div data-no-cursor-fx className="relative z-10 rounded-3xl overflow-hidden border border-indigo-500/20 bg-[#141a3d]">
               <div className="relative h-52 w-full">
                 <img
                   src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=80"
@@ -284,7 +285,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision */}
-            <div className="relative z-10 rounded-3xl overflow-hidden border border-violet-500/20 bg-[#1c1330]">
+            <div data-no-cursor-fx className="relative z-10 rounded-3xl overflow-hidden border border-violet-500/20 bg-[#1c1330]">
               <div className="relative h-52 w-full">
                 <img
                   src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80"
@@ -339,6 +340,7 @@ export default function AboutPage() {
             {VALUES.map((v) => (
               <div
                 key={v.title}
+                data-no-cursor-fx
                 className="group relative z-10 p-6 rounded-2xl border border-white/[0.08] hover:border-white/20 transition-all duration-300"
                 style={{ background: v.bg }}
               >

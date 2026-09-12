@@ -11,7 +11,6 @@ const OPENINGS = [
     department: "Artificial Intelligence",
     accent: "#a855f7",
     tag: "AI & ML",
-    posted: "2 days ago",
     desc: "Lead the design and deployment of machine learning pipelines, computer vision models, and real-time inference systems across our product suite.",
     requirements: [
       "5+ years experience in ML/AI engineering",
@@ -33,7 +32,6 @@ const OPENINGS = [
     department: "Artificial Intelligence",
     accent: "#a855f7",
     tag: "AI & ML",
-    posted: "5 days ago",
     desc: "Build and optimise machine learning models for NLP, image recognition and anomaly detection integrated into our cloud and IoT platforms.",
     requirements: [
       "3+ years experience in machine learning",
@@ -47,48 +45,6 @@ const OPENINGS = [
     ],
   },
   {
-    id: "fullstack-engineer",
-    title: "Full-Stack Software Engineer",
-    type: "Full-time",
-    location: "Remote",
-    department: "Engineering",
-    accent: "#00d4ff",
-    tag: "Engineering",
-    posted: "1 week ago",
-    desc: "Design and build scalable web and mobile applications using modern frameworks, working closely with product and design teams.",
-    requirements: [
-      "3+ years full-stack development experience",
-      "Proficient in React / Next.js and Node.js or similar backend",
-      "Experience with PostgreSQL or MongoDB",
-      "Comfortable with CI/CD pipelines and cloud deployments",
-    ],
-    nice: [
-      "Experience with React Native or Flutter",
-      "Prior startup environment experience",
-    ],
-  },
-  {
-    id: "iot-engineer",
-    title: "IoT & Embedded Systems Engineer",
-    type: "Full-time",
-    location: "Remote",
-    department: "Hardware & IoT",
-    accent: "#00d4ff",
-    tag: "IoT",
-    posted: "3 days ago",
-    desc: "Design firmware and embedded software for connected IoT devices, sensors and edge computing systems integrated with our cloud platforms.",
-    requirements: [
-      "3+ years in embedded systems or IoT development",
-      "Proficient in C/C++ for microcontrollers (ESP32, STM32, or similar)",
-      "Experience with MQTT, BLE or LoRa communication protocols",
-      "Ability to read schematics and collaborate with hardware teams",
-    ],
-    nice: [
-      "Experience with RTOS (FreeRTOS, Zephyr)",
-      "Familiarity with AWS IoT Core or Azure IoT Hub",
-    ],
-  },
-  {
     id: "intern-ai-ml",
     title: "AI/ML Engineering Intern",
     type: "Internship",
@@ -96,7 +52,6 @@ const OPENINGS = [
     department: "Artificial Intelligence",
     accent: "#f472b6",
     tag: "Internship",
-    posted: "Today",
     desc: "Work alongside senior ML engineers on real-world projects involving computer vision, biometrics and intelligent automation. Gain hands-on experience building and deploying models in production environments.",
     requirements: [
       "Pursuing a degree in CS, Data Science, AI or related field",
@@ -117,7 +72,6 @@ const OPENINGS = [
     department: "Engineering",
     accent: "#f472b6",
     tag: "Internship",
-    posted: "Today",
     desc: "Join our engineering team to build features for our web and mobile products, contributing to real production code from day one.",
     requirements: [
       "Pursuing a degree in Computer Science, Software Engineering or related",
@@ -196,6 +150,7 @@ export default function CareersPage() {
           {CULTURE_SECTIONS.map((s) => (
             <div
               key={s.title}
+              data-no-cursor-fx
               className={`relative z-10 flex flex-col ${s.flip ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 rounded-3xl overflow-hidden border border-white/[0.07] bg-[#0d0f1a]`}
             >
               {/* Image */}
@@ -246,7 +201,7 @@ export default function CareersPage() {
               Internships
             </h2>
             <p className="text-white mt-3 text-base">
-              Open to students and recent graduates. Duration: 3–6 months.
+              Open to students and recent graduates. Duration: 6–9 months.
             </p>
           </div>
           <div className="flex flex-col gap-5">
@@ -322,6 +277,7 @@ function JobCard({ job }: { job: (typeof OPENINGS)[0] }) {
   const cardBg = CARD_BG[job.accent] ?? { base: "#111214", light: "#181a1f" };
   return (
     <details
+      data-no-cursor-fx
       className="group relative z-10 rounded-3xl overflow-hidden transition-all duration-200"
       style={{ border: `1px solid ${job.accent}22`, background: cardBg.base }}
     >
@@ -349,7 +305,7 @@ function JobCard({ job }: { job: (typeof OPENINGS)[0] }) {
               </span>
             </div>
             <p className="text-white text-base">
-              {job.department} · {job.location} · {job.posted}
+              {job.department} · {job.location}
             </p>
           </div>
         </div>

@@ -1218,7 +1218,15 @@ export default function SmokeyCursor({
       return ((value - min) % range) + min;
     }
 
+    function isInteractiveTarget(target: EventTarget | null) {
+      if (!(target instanceof Element)) return false;
+      return !!target.closest(
+        'a, button, input, select, textarea, [role="button"], [role="link"], summary, label, [data-no-cursor-fx]'
+      );
+    }
+
     const handleMouseDown = (e: MouseEvent) => {
+      if (isInteractiveTarget(e.target)) return;
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
@@ -1237,6 +1245,10 @@ export default function SmokeyCursor({
     }
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (isInteractiveTarget(e.target)) {
+        pointers[0].moved = false;
+        return;
+      }
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
@@ -1257,6 +1269,7 @@ export default function SmokeyCursor({
     }
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (isInteractiveTarget(e.target)) return;
       const touches = e.targetTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1267,6 +1280,7 @@ export default function SmokeyCursor({
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (isInteractiveTarget(e.target)) return;
       const touches = e.targetTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {

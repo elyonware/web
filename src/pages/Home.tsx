@@ -449,6 +449,7 @@ export default function Home() {
                 {WHY_US.map((item, index) => (
                   <Reveal key={item.title} delay={index * 100}>
                     <div
+                      data-no-cursor-fx
                       className="group/card relative flex min-h-[220px] flex-col items-start justify-center overflow-hidden rounded-[1.75rem] p-8 text-white shadow-xl ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-2 sm:p-10"
                       style={{
                         background: `linear-gradient(135deg, color-mix(in srgb, ${item.accent} 85%, white), ${item.accent} 45%, color-mix(in srgb, ${item.accent} 75%, black))`,
@@ -508,6 +509,7 @@ export default function Home() {
                 {SERVICES.map((service) => (
                   <div
                     key={service.title}
+                    data-no-cursor-fx
                     className="group relative overflow-hidden rounded-[1.6rem] p-[1.5px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
                     style={{ background: `${service.accent}55` }}
                   >

@@ -65,6 +65,27 @@ const CONTACT_ITEMS = [
   },
 ];
 
+const ADDRESSES = [
+  {
+    label: "Registered Office",
+    lines: [
+      "27, Mawtap, Pyllun, Mawphlang",
+      "East Khasi Hills, Shillong",
+      "Meghalaya 793121, India",
+    ],
+    mapQuery: "27, Mawtap, Pyllun, Mawphlang, East Khasi Hills, Shillong, Meghalaya 793121, India",
+  },
+  {
+    label: "Eazy Print Sevcs",
+    lines: [
+      "Rohila Building, Jaiaw Pdeng",
+      "Shillong, East Khasi Hills",
+      "Meghalaya 793002, India",
+    ],
+    mapQuery: "Rohila Building, Jaiaw Pdeng, Shillong, East Khasi Hills, Meghalaya 793002, India",
+  },
+];
+
 const QUICK_LINKS = [
   { label: "Our services", href: "/#services" },
   { label: "Our products", href: "/#products" },
@@ -142,9 +163,61 @@ export default function ContactPage() {
               </div>
             </div>
 
+            {/* Office addresses */}
             <div className="grid sm:grid-cols-2 gap-4 mt-10">
+              {ADDRESSES.map((a) => (
+                <div
+                  key={a.label}
+                  data-no-cursor-fx
+                  className="relative z-10 flex flex-col rounded-2xl border border-white/[0.1] bg-[#12142e] overflow-hidden"
+                >
+                  <div className="flex items-start gap-4 p-6">
+                    <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-rose-500/15 text-rose-400">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={1.5}
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-sm text-white/60 mb-0.5">{a.label}</div>
+                      <div className="text-base font-semibold text-white leading-relaxed">
+                        {a.lines.map((line) => (
+                          <div key={line}>{line}</div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <iframe
+                    title={`Map — ${a.label}`}
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(a.mapQuery)}&output=embed`}
+                    className="w-full h-56 border-0 grayscale-[20%] contrast-[1.1]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 mt-4">
               {/* Response time */}
-              <div className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20">
+              <div
+                data-no-cursor-fx
+                className="relative z-10 p-6 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-violet-950/40 border border-indigo-500/20"
+              >
                 <h3 className="font-bold text-lg text-white mb-3">Response time</h3>
                 <p className="text-base text-white leading-relaxed mb-4">
                   We aim to respond to every enquiry within{" "}
@@ -158,7 +231,10 @@ export default function ContactPage() {
               </div>
 
               {/* Quick links */}
-              <div className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]">
+              <div
+                data-no-cursor-fx
+                className="relative z-10 p-6 rounded-2xl bg-[#12142e] border border-white/[0.1]"
+              >
                 <h3 className="font-bold text-lg text-white mb-4">Explore first</h3>
                 <div className="flex flex-col gap-2">
                   {QUICK_LINKS.map((l) => (
